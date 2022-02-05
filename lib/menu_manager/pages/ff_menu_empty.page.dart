@@ -4,8 +4,10 @@ import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/category_listview.widget.dart';
+import 'package:foodwifi_trial/menu_manager/widget_view/item_listview.widget.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/menu_empty_category_list.widget.dart';
+import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'pages.dart';
 
 class FfMenuEmptyPage extends StatefulWidget {
@@ -20,7 +22,10 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage> with SingleTickerProvi
 
  // final scaffoldKey = GlobalKey<ScaffoldState>();
 
- bool category_empty_state=false;
+ bool categoryEmptyState=false;
+ bool itemEmptyState=false;
+ bool collectionEmptyState=false;
+ bool outofStockState=false;
 
  late TabController _tabController;
   var indexTab=0;
@@ -154,11 +159,13 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage> with SingleTickerProvi
        body: TabBarView(
                           controller: _tabController,
                           children:  [
-                          (category_empty_state)==false?CategoryListViewWidget() :MenuEmptyCategorylistWidget(text1: 'You have no category.',),
+                          (categoryEmptyState==false)?CategoryListViewWidget() :const MenuEmptyCategorylistWidget(text1: 'You have no category.',),
+                          (itemEmptyState==false)?ItemListViewWidget():const MenuEmptyCategorylistWidget(text1: 'You have no items.'),
+                          (outofStockState==false)? OutofstockListviewWidget(): const MenuEmptyCategorylistWidget(text1: 'You\'re out of stock.'),
+                          (collectionEmptyState==false)? CollectionListViewWidget(): const MenuEmptyCategorylistWidget(text1: 'You have no collections yet.'),
                           
-                          MenuEmptyCategorylistWidget(text1: 'You have no items.'),
-                          MenuEmptyCategorylistWidget(text1: 'You\'re out of stock.'),
-                          MenuEmptyCategorylistWidget(text1: 'You have no collections yet.'),
+                          
+                         
 
                           ],
                         ),

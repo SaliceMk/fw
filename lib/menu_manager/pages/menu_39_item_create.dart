@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:foodwifi_trial/menu_manager/pages/select_suggested_items.page.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 
 import 'pages.dart';
@@ -256,7 +257,14 @@ class _Menu39PageState extends State<Menu39Page> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                   child: ElevatedButton(
-                  onPressed: (){}, 
+                  onPressed: ()async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SelectSuggestedItemsPage(),
+            ),
+          );
+        },  
                   
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -306,12 +314,12 @@ class _Menu39PageState extends State<Menu39Page> {
                           primary: Colorss.box,
                         ),),
                 
-               SizedBox(height: 32,),
+               const SizedBox(height: 32,),
                 const Text(
                   'Add-Ons',
                   //style: TextStyle(fontSize: 14),
                 ),
-                SizedBox(height: 14,),
+                const SizedBox(height: 14,),
                
                const ListViewPanelWidget(tile1Title: 'Salt', tile2Title: 'Mayo', tile1Subtitle: 'Rs. 0', tile2Subtitle: 'Rs.250'),
 

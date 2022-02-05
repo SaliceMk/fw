@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 
-class CategoryListViewWidget extends StatefulWidget {
-  //const CategoryListViewWidget({Key key}) : super(key: key);
+class CollectionListViewWidget extends StatefulWidget {
+  //const CollectionListViewWidget({Key key}) : super(key: key);
 
   @override
-  _CategoryListViewWidgetState createState() => _CategoryListViewWidgetState();
+  _CollectionListViewWidgetState createState() => _CollectionListViewWidgetState();
 }
 
-class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
+class _CollectionListViewWidgetState extends State<CollectionListViewWidget> {
    bool isSwitched=false;
 
   @override
@@ -34,27 +34,27 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
                     children:[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('Noodles',),
-                        SizedBox(height: 8,),
-                        Text('Chinese and Indian food', style: TextStyle( color: Colorss.greyText),),
-                      ],
-                    ),
-                    Row(
                       children: [
-                        const Text('In Stock', style: TextStyle(color: Colorss.greyText),),
-                        Switch(
-                          value: isSwitched,
-                          onChanged: (value) {
-                            setState(() {
-                              isSwitched=value;
-                              print(isSwitched);
-                            });
-                          },
-                          activeTrackColor: Colorss.switchTrack,
-                          activeColor: Colorss.primaryRed ,
+                        const Text('Pizza',),
+                        const SizedBox(height: 8,),
+                        Row(
+                          children: const [
+                            Text('Type : ', style: TextStyle(color: Colorss.greyText),),
+                            Text('List View', style: TextStyle( color: Colorss.amberBtnBorder),),
+                          ],
                         ),
                       ],
+                    ),
+                    Switch(
+                      value: isSwitched,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitched=value;
+                          print(isSwitched);
+                        });
+                      },
+                      activeTrackColor: Colorss.switchTrack,
+                      activeColor: Colorss.primaryRed ,
                     ),
                     ]
                    
