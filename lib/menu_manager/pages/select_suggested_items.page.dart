@@ -10,6 +10,7 @@ class SelectSuggestedItemsPage extends StatefulWidget {
 }
 
 class _SelectSuggestedItemsPageState extends State<SelectSuggestedItemsPage> {
+  bool _value=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +44,85 @@ class _SelectSuggestedItemsPageState extends State<SelectSuggestedItemsPage> {
         elevation: 1,
       ),
 
+      body: Column(
+        children: [
+          Expanded(
+            flex: 9,
+            child: ListView.builder(
+                padding: EdgeInsets.only(top: 8,bottom: 8),
+                scrollDirection: Axis.vertical,
+                itemCount: 10,
+                itemBuilder: (context, listViewIndex) {
+                 // final listViewFoodRecord = listViewFoodRecordList[listViewIndex];
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: 
+                    
+                    Card(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(16,16,4,16),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                                   'assets/images/cake.png',
+                                                   width: 120,
+                                                   height: 120,
+                                                   fit: BoxFit.fitHeight,
+                                                  
+                                                   
+                                                 ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: CheckboxListTile(
+                             title: const Padding(
+                               padding: EdgeInsets.only(bottom:8.0),
+                               child: Text('Food name'),
+                             ),
+                              subtitle: const Text('Food Description. Indian style chicken noodles serve with red chillie sauce.', style: TextStyle(color: Colorss.greyText),),
+                              
+                              autofocus: false,
+                              activeColor: Colorss.primaryRed,
+                              checkColor: Colorss.bgColor,
+                              selected: _value,
+                              value: _value,
+                              onChanged: (bool? value){
+                                setState(() {
+                                  _value=value??=false;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                     
+                  );
+                },
+              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16,8,16,32),
+            child: Expanded(
+              flex: 1,
+              child: ElevatedButton(onPressed: (){
+                  Navigator.pop(context);
+              },
+               child: 
+              const Text('Done'),
+               style: ElevatedButton.styleFrom(fixedSize:  Size(MediaQuery.of(context).size.width/1, 50),
+          primary: Colorss.primaryRed,
+          ),),
+            ),
+          ),
+        ],
+      ),
       
     );
   }
