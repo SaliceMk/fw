@@ -161,7 +161,7 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage> with SingleTickerProvi
                           children:  [
                           (categoryEmptyState==false)?CategoryListViewWidget() :const MenuEmptyCategorylistWidget(text1: 'You have no category.',),
                           (itemEmptyState==false)?ItemListViewWidget():const MenuEmptyCategorylistWidget(text1: 'You have no items.'),
-                          (outofStockState==false)? OutofstockListviewWidget(): const MenuEmptyCategorylistWidget(text1: 'You\'re out of stock.'),
+                          (outofStockState==false)? ItemListViewWidget(): const MenuEmptyCategorylistWidget(text1: 'You\'re out of stock.'),
                           (collectionEmptyState==false)? CollectionListViewWidget(): const MenuEmptyCategorylistWidget(text1: 'You have no collections yet.'),
                           
                           

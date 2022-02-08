@@ -100,31 +100,37 @@ class _ItemListViewWidgetState extends State<ItemListViewWidget> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text('Status: '),
-                                   Text('Published'),
-                                ],
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text('Status: ', style: TextStyle(fontSize: 12),),
+                                     Text('Published',style: TextStyle(fontSize: 12, color: Colors.green),),
+                                  ],
+                                ),
                               ),
-                             
-                               Row(
-                                 mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text('In Stock', style: TextStyle(fontSize: 12, color: Colorss.greyText),),
-                            Switch(
-                              value: isSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  isSwitched=value;
-                                  print(isSwitched);
-                                });
-                              },
-                              activeTrackColor: Colorss.switchTrack,
-                              activeColor: Colorss.primaryRed ,
-                            ),
-                          ],
-                        ),
+                             //style: TextStyle(fontSize: 12),
+                               Expanded(
+                                 flex: 1,
+                                 child: Row(
+                                   mainAxisSize: MainAxisSize.min,
+                                                         children: [
+                                                           const Text('In Stock', style: TextStyle(fontSize: 12, color: Colorss.greyText),),
+                                                           Switch(
+                                                             value: isSwitched,
+                                                             onChanged: (value) {
+                                  setState(() {
+                                    isSwitched=value;
+                                    print(isSwitched);
+                                  });
+                                                             },
+                                                             activeTrackColor: Colorss.switchTrack,
+                                                             activeColor: Colorss.primaryRed ,
+                                                           ),
+                                                         ],
+                                                       ),
+                               ),
                             ],),
                           ],
                         ),

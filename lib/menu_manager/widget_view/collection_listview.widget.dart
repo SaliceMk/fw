@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:foodwifi_trial/menu_manager/pages/pages.dart';
 
 
 class CollectionListViewWidget extends StatefulWidget {
@@ -27,37 +28,42 @@ class _CollectionListViewWidgetState extends State<CollectionListViewWidget> {
               child: 
               
               Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('Pizza',),
-                        const SizedBox(height: 8,),
-                        Row(
-                          children: const [
-                            Text('Type : ', style: TextStyle(color: Colorss.greyText),),
-                            Text('List View', style: TextStyle( color: Colorss.amberBtnBorder),),
-                          ],
-                        ),
-                      ],
+                child: InkWell(
+                  onTap: () async{
+                    await Navigator.push(context, MaterialPageRoute(builder: (context)=> const Menu31OneCollectionTypeListingPage()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children:[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Sambal Balacan Chilli',),
+                          const SizedBox(height: 8,),
+                          Row(
+                            children: const [
+                              Text('Type : ', style: TextStyle(color: Colorss.greyText),),
+                              Text('List View', style: TextStyle( color: Colorss.amberBtnBorder),),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Switch(
+                        value: isSwitched,
+                        onChanged: (value) {
+                          setState(() {
+                            isSwitched=value;
+                            print(isSwitched);
+                          });
+                        },
+                        activeTrackColor: Colorss.switchTrack,
+                        activeColor: Colorss.primaryRed ,
+                      ),
+                      ]
+                     
                     ),
-                    Switch(
-                      value: isSwitched,
-                      onChanged: (value) {
-                        setState(() {
-                          isSwitched=value;
-                          print(isSwitched);
-                        });
-                      },
-                      activeTrackColor: Colorss.switchTrack,
-                      activeColor: Colorss.primaryRed ,
-                    ),
-                    ]
-                   
                   ),
                 ),
               )
