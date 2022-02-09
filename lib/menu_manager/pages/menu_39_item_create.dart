@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
-import 'package:foodwifi_trial/menu_manager/pages/select_suggested_items.page.dart';
-import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 
+import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:foodwifi_trial/router/menu_router/app_router.dart';
 import 'pages.dart';
 
 class Menu39Page extends StatefulWidget {
@@ -51,7 +52,7 @@ class _Menu39PageState extends State<Menu39Page> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.router.pop();
           },
         ),
         title: Row(
@@ -273,15 +274,17 @@ class _Menu39PageState extends State<Menu39Page> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                   child: ElevatedButton(
-                    onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const SelectSuggestedItemsPage(),
-                        ),
-                      );
-                    },
+                    onPressed: () =>
+                        context.router.push(const SelectSuggestedItemsRoute()),
+                    // onPressed: () async {
+                    //   await Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) =>
+                    //           const SelectSuggestedItemsPage(),
+                    //     ),
+                    //   );
+                    // },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -320,19 +323,24 @@ class _Menu39PageState extends State<Menu39Page> {
                     tile1Subtitle: 'Rs.250',
                     tile2Subtitle: 'Rs.250'),
                 ElevatedButton(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Menu35Page(
-                          appBarTitle: 'Add Variant',
-                          textField1: 'Variant Name',
-                          textField2: 'Cost Price',
-                          buttonLabel: 'ADD',
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: () => context.router.push(Menu35Route(
+                      appBarTitle: 'Add Variant',
+                      textField1: 'Variant Name',
+                      textField2: 'Cost Price',
+                      buttonLabel: 'ADD')),
+                  // onPressed: () async {
+                  //   await Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Menu35Page(
+                  //         appBarTitle: 'Add Variant',
+                  //         textField1: 'Variant Name',
+                  //         textField2: 'Cost Price',
+                  //         buttonLabel: 'ADD',
+                  //       ),
+                  //     ),
+                  //   );
+                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -376,19 +384,24 @@ class _Menu39PageState extends State<Menu39Page> {
                     tile1Subtitle: 'Rs. 0',
                     tile2Subtitle: 'Rs.250'),
                 ElevatedButton(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Menu35Page(
-                          appBarTitle: 'Add Add-Ons',
-                          textField1: 'Add-On Name',
-                          textField2: 'Cost Price',
-                          buttonLabel: 'ADD',
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: () => context.router.push(Menu35Route(
+                      appBarTitle: 'Add Add-Ons',
+                      textField1: 'Add-On Name',
+                      textField2: 'Cost Price',
+                      buttonLabel: 'ADD')),
+                  // onPressed: () async {
+                  //   await Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Menu35Page(
+                  //         appBarTitle: 'Add Add-Ons',
+                  //         textField1: 'Add-On Name',
+                  //         textField2: 'Cost Price',
+                  //         buttonLabel: 'ADD',
+                  //       ),
+                  //     ),
+                  //   );
+                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

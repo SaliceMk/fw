@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/two_textfields.widget.dart';
@@ -42,7 +43,7 @@ class _Menu35PageState extends State<Menu35Page> {
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.router.pop();
           },
         ),
         title: Row(

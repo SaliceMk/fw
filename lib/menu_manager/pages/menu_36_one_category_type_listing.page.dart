@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/item_listview.widget.dart';
+import 'package:auto_route/auto_route.dart';
 
 class Menu36OneCategoryTypeListingPage extends StatefulWidget {
   const Menu36OneCategoryTypeListingPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _Menu36OneCategoryTypeListingPageState
             size: 30,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            context.router.pop();
           },
         ),
         actions: [

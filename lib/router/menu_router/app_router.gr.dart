@@ -21,11 +21,6 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: FfMenuEmptyPage());
     },
-    Menu36OneCategoryTypeListingRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: const Menu36OneCategoryTypeListingPage());
-    },
     Menu35Route.name: (routeData) {
       final args = routeData.argsAs<Menu35RouteArgs>();
       return MaterialPageX<dynamic>(
@@ -36,16 +31,21 @@ class _$AppRouter extends RootStackRouter {
               textField2: args.textField2,
               buttonLabel: args.buttonLabel));
     },
-    Menu31OneCollectionTypeListingRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: const Menu31OneCollectionTypeListingPage());
-    },
     Menu39Route.name: (routeData) {
       return MaterialPageX<dynamic>(routeData: routeData, child: Menu39Page());
     },
     Menu30Route.name: (routeData) {
       return MaterialPageX<dynamic>(routeData: routeData, child: Menu30Page());
+    },
+    Menu36OneCategoryTypeListingRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: const Menu36OneCategoryTypeListingPage());
+    },
+    Menu31OneCollectionTypeListingRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: const Menu31OneCollectionTypeListingPage());
     },
     SelectSuggestedItemsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -55,48 +55,25 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(FfMenuEmptyRoute.name, path: '/', children: [
-          RouteConfig(Menu36OneCategoryTypeListingRoute.name,
-              path: 'menu36-one-category-type-listing-page',
-              parent: FfMenuEmptyRoute.name),
-          RouteConfig(Menu35Route.name,
-              path: 'menu35-page', parent: FfMenuEmptyRoute.name),
-          RouteConfig(Menu31OneCollectionTypeListingRoute.name,
-              path: 'menu31-one-collection-type-listing-page',
-              parent: FfMenuEmptyRoute.name),
-          RouteConfig(Menu39Route.name,
-              path: 'menu39-page',
-              parent: FfMenuEmptyRoute.name,
-              children: [
-                RouteConfig(SelectSuggestedItemsRoute.name,
-                    path: 'select-suggested-items-page',
-                    parent: Menu39Route.name),
-                RouteConfig(Menu35Route.name,
-                    path: 'menu35-page', parent: Menu39Route.name)
-              ]),
-          RouteConfig(Menu30Route.name,
-              path: 'menu30-page', parent: FfMenuEmptyRoute.name)
-        ])
+        RouteConfig(FfMenuEmptyRoute.name, path: '/'),
+        RouteConfig(Menu35Route.name, path: '/menu35-page'),
+        RouteConfig(Menu39Route.name, path: '/menu39-page'),
+        RouteConfig(Menu30Route.name, path: '/menu30-page'),
+        RouteConfig(Menu36OneCategoryTypeListingRoute.name,
+            path: '/menu36-one-category-type-listing-page'),
+        RouteConfig(Menu31OneCollectionTypeListingRoute.name,
+            path: '/menu31-one-collection-type-listing-page'),
+        RouteConfig(SelectSuggestedItemsRoute.name,
+            path: '/select-suggested-items-page')
       ];
 }
 
 /// generated route for
 /// [FfMenuEmptyPage]
 class FfMenuEmptyRoute extends PageRouteInfo<void> {
-  const FfMenuEmptyRoute({List<PageRouteInfo>? children})
-      : super(FfMenuEmptyRoute.name, path: '/', initialChildren: children);
+  const FfMenuEmptyRoute() : super(FfMenuEmptyRoute.name, path: '/');
 
   static const String name = 'FfMenuEmptyRoute';
-}
-
-/// generated route for
-/// [Menu36OneCategoryTypeListingPage]
-class Menu36OneCategoryTypeListingRoute extends PageRouteInfo<void> {
-  const Menu36OneCategoryTypeListingRoute()
-      : super(Menu36OneCategoryTypeListingRoute.name,
-            path: 'menu36-one-category-type-listing-page');
-
-  static const String name = 'Menu36OneCategoryTypeListingRoute';
 }
 
 /// generated route for
@@ -108,7 +85,7 @@ class Menu35Route extends PageRouteInfo<Menu35RouteArgs> {
       required String textField2,
       required String buttonLabel})
       : super(Menu35Route.name,
-            path: 'menu35-page',
+            path: '/menu35-page',
             args: Menu35RouteArgs(
                 appBarTitle: appBarTitle,
                 textField1: textField1,
@@ -140,20 +117,9 @@ class Menu35RouteArgs {
 }
 
 /// generated route for
-/// [Menu31OneCollectionTypeListingPage]
-class Menu31OneCollectionTypeListingRoute extends PageRouteInfo<void> {
-  const Menu31OneCollectionTypeListingRoute()
-      : super(Menu31OneCollectionTypeListingRoute.name,
-            path: 'menu31-one-collection-type-listing-page');
-
-  static const String name = 'Menu31OneCollectionTypeListingRoute';
-}
-
-/// generated route for
 /// [Menu39Page]
 class Menu39Route extends PageRouteInfo<void> {
-  const Menu39Route({List<PageRouteInfo>? children})
-      : super(Menu39Route.name, path: 'menu39-page', initialChildren: children);
+  const Menu39Route() : super(Menu39Route.name, path: '/menu39-page');
 
   static const String name = 'Menu39Route';
 }
@@ -161,9 +127,29 @@ class Menu39Route extends PageRouteInfo<void> {
 /// generated route for
 /// [Menu30Page]
 class Menu30Route extends PageRouteInfo<void> {
-  const Menu30Route() : super(Menu30Route.name, path: 'menu30-page');
+  const Menu30Route() : super(Menu30Route.name, path: '/menu30-page');
 
   static const String name = 'Menu30Route';
+}
+
+/// generated route for
+/// [Menu36OneCategoryTypeListingPage]
+class Menu36OneCategoryTypeListingRoute extends PageRouteInfo<void> {
+  const Menu36OneCategoryTypeListingRoute()
+      : super(Menu36OneCategoryTypeListingRoute.name,
+            path: '/menu36-one-category-type-listing-page');
+
+  static const String name = 'Menu36OneCategoryTypeListingRoute';
+}
+
+/// generated route for
+/// [Menu31OneCollectionTypeListingPage]
+class Menu31OneCollectionTypeListingRoute extends PageRouteInfo<void> {
+  const Menu31OneCollectionTypeListingRoute()
+      : super(Menu31OneCollectionTypeListingRoute.name,
+            path: '/menu31-one-collection-type-listing-page');
+
+  static const String name = 'Menu31OneCollectionTypeListingRoute';
 }
 
 /// generated route for
@@ -171,7 +157,7 @@ class Menu30Route extends PageRouteInfo<void> {
 class SelectSuggestedItemsRoute extends PageRouteInfo<void> {
   const SelectSuggestedItemsRoute()
       : super(SelectSuggestedItemsRoute.name,
-            path: 'select-suggested-items-page');
+            path: '/select-suggested-items-page');
 
   static const String name = 'SelectSuggestedItemsRoute';
 }

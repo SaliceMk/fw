@@ -2,11 +2,11 @@ import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:flutter/material.dart';
-import 'package:foodwifi_trial/menu_manager/widget_view/category_listview.widget.dart';
-import 'package:foodwifi_trial/menu_manager/widget_view/item_listview.widget.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/menu_empty_category_list.widget.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
+import 'package:foodwifi_trial/router/menu_router/app_router.dart';
 import 'pages.dart';
 
 class FfMenuEmptyPage extends StatefulWidget {
@@ -134,19 +134,26 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage>
           ? FloatingActionButton.extended(
               label: const Text('Category'),
               icon: const Icon(Icons.add),
-              onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Menu35Page(
-                      appBarTitle: 'Create Category',
-                      textField1: 'Category Name',
-                      textField2: 'Description',
-                      buttonLabel: 'CREATE',
-                    ),
-                  ),
-                );
+              onPressed: () {
+                context.router.push(Menu35Route(
+                    appBarTitle: 'Create Category',
+                    textField1: 'Category Name',
+                    textField2: 'Description',
+                    buttonLabel: 'CREATE'));
               },
+              // onPressed: () async {
+              //   await Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => Menu35Page(
+              //         appBarTitle: 'Create Category',
+              //         textField1: 'Category Name',
+              //         textField2: 'Description',
+              //         buttonLabel: 'CREATE',
+              //       ),
+              //     ),
+              //   );
+              // },
               backgroundColor: Colorss.primaryRed,
               elevation: 8,
             )
@@ -154,24 +161,30 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage>
               ? FloatingActionButton.extended(
                   label: const Text('Item'),
                   icon: const Icon(Icons.add),
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Menu39Page(),
-                      ),
-                    );
+                  onPressed: () {
+                    context.router.push(const Menu39Route());
                   },
+                  // onPressed: () async {
+                  //   await Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Menu39Page(),
+                  //     ),
+                  //   );
+                  // },
                   backgroundColor: Colorss.primaryRed,
                 )
               : (indexTab == 3)
                   ? FloatingActionButton.extended(
-                      onPressed: () async {
-                        await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Menu30Page()));
+                      onPressed: () {
+                        context.router.push(const Menu30Route());
                       },
+                      // onPressed: () async {
+                      //   await Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => Menu30Page()));
+                      // },
                       backgroundColor: Colorss.primaryRed,
                       label: const Text('Collection'),
                       icon: const Icon(Icons.add))

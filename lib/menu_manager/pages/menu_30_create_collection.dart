@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
-
+import 'package:auto_route/auto_route.dart';
 
 class Menu30Page extends StatefulWidget {
   //const Menu30Page({Key key}) : super(key: key);
@@ -12,7 +11,7 @@ class Menu30Page extends StatefulWidget {
 }
 
 class _Menu30PageState extends State<Menu30Page> {
-   String? dropDownValue;
+  String? dropDownValue;
   late TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -35,22 +34,24 @@ class _Menu30PageState extends State<Menu30Page> {
         backgroundColor: Colorss.bgColor,
         automaticallyImplyLeading: false,
         leading: IconButton(
-             
-              icon: const Icon(
-                Icons.clear,
-                color: Colorss.textIconColor,
-                size: 30,
-              ),
-              onPressed: () async {
-                Navigator.pop(context);
-              },
+          icon: const Icon(
+            Icons.clear,
+            color: Colorss.textIconColor,
+            size: 30,
+          ),
+          onPressed: () async {
+            context.router.pop();
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            Text(
+              'Create Collection',
+              style: TextStyle(color: Colorss.textIconColor, fontSize: 22),
             ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Text('Create Collection',style: TextStyle(color: Colorss.textIconColor, fontSize: 22),),
-              ],
-            ),
+          ],
+        ),
         //actions: [],
         centerTitle: true,
         elevation: 1,
@@ -84,7 +85,6 @@ class _Menu30PageState extends State<Menu30Page> {
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
                   ),
-                  
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
@@ -112,47 +112,64 @@ class _Menu30PageState extends State<Menu30Page> {
                 ),
                 const Text(
                   'List View',
-                  
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
-                  child:  Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4)), color: Colorss.bgColor,border: Border.all(color: Colorss.border)),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        
-                        isExpanded: true,
-                        hint: const Text('Layout Type'),
-                        value: dropDownValue,
-                        icon: const Icon(Icons.arrow_drop_down, color: Colorss.textIconColor,size: 30,),
-                        //style: const TextStyle(color: Colorss.textIconColor,fontSize: 16),
-                        itemHeight: 50,
-                        
-                        borderRadius: const BorderRadius.all(Radius.circular(4)),
-                        
-                        elevation: 1,
-                        onChanged: (String? newValue){
-                          setState(() {
-                            dropDownValue=newValue;
-                          });
-                        },
-                        items: <String>['Carousel','Grid View','List View'].map((String value){
-                            return DropdownMenuItem<String>(value: value, child: Text(value),);
-                        }).toList(),
-                        
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        color: Colorss.bgColor,
+                        border: Border.all(color: Colorss.border)),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          hint: const Text('Layout Type'),
+                          value: dropDownValue,
+                          icon: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colorss.textIconColor,
+                            size: 30,
+                          ),
+                          //style: const TextStyle(color: Colorss.textIconColor,fontSize: 16),
+                          itemHeight: 50,
+
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(4)),
+
+                          elevation: 1,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropDownValue = newValue;
+                            });
+                          },
+                          items: <String>['Carousel', 'Grid View', 'List View']
+                              .map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                  
+                const SizedBox(
+                  height: 32,
                 ),
-                const SizedBox(height: 32,),
-                ElevatedButton(onPressed: (){}, child: const Text('CREATE',style: TextStyle(color: Colorss.bgColor),),
-          style: ElevatedButton.styleFrom(fixedSize:  Size(MediaQuery.of(context).size.width/1, 50),
-          primary: Colorss.primaryRed,
-          ),)
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'CREATE',
+                    style: TextStyle(color: Colorss.bgColor),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(MediaQuery.of(context).size.width / 1, 50),
+                    primary: Colorss.primaryRed,
+                  ),
+                )
               ],
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
-import 'package:foodwifi_trial/menu_manager/pages/pages.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:foodwifi_trial/router/menu_router/app_router.dart';
 
 class CategoryListViewWidget extends StatefulWidget {
   //const CategoryListViewWidget({Key key}) : super(key: key);
@@ -15,7 +16,7 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.only(top: 8, bottom: 8),
+      padding: const EdgeInsets.only(top: 8, bottom: 8),
       scrollDirection: Axis.vertical,
       itemCount: 10,
       itemBuilder: (context, listViewIndex) {
@@ -24,13 +25,15 @@ class _CategoryListViewWidgetState extends State<CategoryListViewWidget> {
             padding: const EdgeInsets.all(4.0),
             child: Card(
               child: InkWell(
-                onTap: () async {
-                  await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Menu36OneCategoryTypeListingPage()));
-                },
+                onTap: () => context.router
+                    .push(const Menu36OneCategoryTypeListingRoute()),
+                // onTap: () async {
+                //   await Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) =>
+                //               Menu36OneCategoryTypeListingPage()));
+                // },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
