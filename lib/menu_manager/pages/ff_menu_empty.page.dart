@@ -6,7 +6,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/menu_empty_category_list.widget.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
-import 'package:foodwifi_trial/router/menu_router/app_router.dart';
+import 'package:foodwifi_trial/router/app_router.dart';
 import 'pages.dart';
 
 class FfMenuEmptyPage extends StatefulWidget {

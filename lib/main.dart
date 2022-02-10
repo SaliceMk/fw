@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodwifi_trial/menu_manager/pages/ff_menu_empty.page.dart';
 
-import 'router/menu_router/app_router.dart';
+import 'router/app_router.dart';
 //import 'package:foodwifi_trial/menu_manager/pages/menu_empty.page.dart';
 
 void main() {

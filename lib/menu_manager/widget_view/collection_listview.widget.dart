@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:foodwifi_trial/router/menu_router/app_router.dart';
+import 'package:foodwifi_trial/router/app_router.dart';
 
 class CollectionListViewWidget extends StatefulWidget {
   //const CollectionListViewWidget({Key key}) : super(key: key);
