@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:foodwifi_trial/router/app_router.dart';
-import 'pages.dart';
+import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
+
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class Menu39Page extends StatefulWidget {
   // const Menu39Page({Key key}) : super(key: key);
@@ -35,6 +38,8 @@ class _Menu39PageState extends State<Menu39Page> {
 
   @override
   Widget build(BuildContext context) {
+    var longitude = MediaQuery.of(context).size.height;
+    var latitude = MediaQuery.of(context).size.width;
     return Scaffold(
       // key: scaffoldKey,
       appBar: AppBar(
@@ -328,19 +333,6 @@ class _Menu39PageState extends State<Menu39Page> {
                       textField1: 'Variant Name',
                       textField2: 'Cost Price',
                       buttonLabel: 'ADD')),
-                  // onPressed: () async {
-                  //   await Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Menu35Page(
-                  //         appBarTitle: 'Add Variant',
-                  //         textField1: 'Variant Name',
-                  //         textField2: 'Cost Price',
-                  //         buttonLabel: 'ADD',
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -389,19 +381,6 @@ class _Menu39PageState extends State<Menu39Page> {
                       textField1: 'Add-On Name',
                       textField2: 'Cost Price',
                       buttonLabel: 'ADD')),
-                  // onPressed: () async {
-                  //   await Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Menu35Page(
-                  //         appBarTitle: 'Add Add-Ons',
-                  //         textField1: 'Add-On Name',
-                  //         textField2: 'Cost Price',
-                  //         buttonLabel: 'ADD',
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -432,15 +411,13 @@ class _Menu39PageState extends State<Menu39Page> {
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 34, 0, 0),
                   child: Text(
-                    'THUMBNAIL AND SLIDER IMAGES',
-                    //style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
+                    'Thumbnail and Slider Images',
                   ),
                 ),
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 26, 0, 2),
                   child: Text(
-                    'THUMBNAIL',
-                    // style: TextStyle(fontSize: 16),
+                    'Thumbnail',
                   ),
                 ),
                 Padding(
@@ -454,13 +431,18 @@ class _Menu39PageState extends State<Menu39Page> {
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/0/600',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
+                              FullScreenWidget(
+                                child: Hero(
+                                  tag: 'Thumbnail Image',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -495,7 +477,7 @@ class _Menu39PageState extends State<Menu39Page> {
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                   child: Text(
-                    'SLIDER IMAGES',
+                    'Slider Images',
                     //style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
                   ),
                 ),
@@ -511,13 +493,18 @@ class _Menu39PageState extends State<Menu39Page> {
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/167/600',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
+                              FullScreenWidget(
+                                child: Hero(
+                                  tag: 'Slider Image 1',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -539,13 +526,18 @@ class _Menu39PageState extends State<Menu39Page> {
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/754/600',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
+                              FullScreenWidget(
+                                child: Hero(
+                                  tag: 'Slider Image 2',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -567,13 +559,18 @@ class _Menu39PageState extends State<Menu39Page> {
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/88/600',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
+                              FullScreenWidget(
+                                child: Hero(
+                                  tag: 'Slider Image 3',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Align(
@@ -618,7 +615,12 @@ class _Menu39PageState extends State<Menu39Page> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showCupertinoModalBottomSheet(
+                        expand: false,
+                        context: context,
+                        builder: (context) => const BottomSheetWidget());
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -646,7 +648,7 @@ class _Menu39PageState extends State<Menu39Page> {
                     primary: Colorss.box,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 ElevatedButton(

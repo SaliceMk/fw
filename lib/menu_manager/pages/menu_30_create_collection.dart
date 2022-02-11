@@ -13,7 +13,7 @@ class Menu30Page extends StatefulWidget {
 class _Menu30PageState extends State<Menu30Page> {
   String? dropDownValue;
   late TextEditingController textController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  //final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _Menu30PageState extends State<Menu30Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      //key: scaffoldKey,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colorss.bgColor,
@@ -63,7 +63,7 @@ class _Menu30PageState extends State<Menu30Page> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 0),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
                   controller: textController,
@@ -87,7 +87,7 @@ class _Menu30PageState extends State<Menu30Page> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: const [
@@ -105,8 +105,8 @@ class _Menu30PageState extends State<Menu30Page> {
                     child: Image.asset(
                       'assets/images/ListViewLayout.png',
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.30,
-                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height * 0.25,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -114,7 +114,7 @@ class _Menu30PageState extends State<Menu30Page> {
                   'List View',
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 26, 0, 0),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -157,7 +157,7 @@ class _Menu30PageState extends State<Menu30Page> {
                   ),
                 ),
                 const SizedBox(
-                  height: 32,
+                  height: 24,
                 ),
                 ElevatedButton(
                   onPressed: () {},

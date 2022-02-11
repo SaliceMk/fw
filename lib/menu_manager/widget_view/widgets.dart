@@ -8,3 +8,4 @@ export 'listview_panel.dart';
 export 'category_listview.widget.dart';
 export 'item_listview.widget.dart';
 export 'collection_listview.widget.dart';
+export 'bottom_sheet.widget.dart';
