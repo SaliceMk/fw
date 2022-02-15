@@ -51,16 +51,6 @@ class DeleteDialog extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: myChild,
-                        // child: ElevatedButton(
-                        //     style: ElevatedButton.styleFrom(
-                        //         primary: Colorss.primaryRed),
-                        //     onPressed: () {
-                        //       // setState(() {
-                        //       //   thumbImage = '';
-                        //       // });
-                        //       Navigator.pop(context);
-                        //     },
-                        //     child: Text('Yes')),
                       ),
                     ],
                   ))

@@ -8,5 +8,5 @@ export 'listview_panel.dart';
 export 'category_listview.widget.dart';
 export 'item_listview.widget.dart';
 export 'collection_listview.widget.dart';
-export 'bottom_sheet.widget.dart';
+export 'singleton_widgets/bottom_sheet.widget.dart';
 export 'singleton_widgets/s_widgets.dart';

@@ -1,10 +1,28 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../colors/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
+import '../../../colors/colors.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({Key? key}) : super(key: key);
+
+  // Future pickImage(ImageSource source) async {
+  //   try {
+  //     XFile? image = await ImagePicker().pickImage(source: source);
+  //     if (image == null) return null;
+  //     final imageTempo = File(image.path);
+  //     image = imageTempo as XFile?;
+  //     return image;
+  //   } on PlatformException catch (e) {
+  //     print('Failed to pick image: $e');
+  //     return null;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +36,12 @@ class BottomSheetWidget extends StatelessWidget {
             flex: 1,
             child: InkWell(
               splashColor: Colorss.primaryRed,
-              onTap: () => print('Gallery pressed....'),
+              onTap: () {
+                print('Gallery pressed....');
+                BlocProvider.of<Menu39ImagesCubit>(context)
+                    .pickImage(ImageSource.gallery);
+                // var img = pickImage(ImageSource.gallery);
+              },
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

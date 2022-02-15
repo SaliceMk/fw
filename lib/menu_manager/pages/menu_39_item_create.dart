@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -62,6 +66,10 @@ class _Menu39PageState extends State<Menu39Page> {
 
   @override
   Widget build(BuildContext context) {
+    final thumbImageFromCubit = context.watch<Menu39ImagesCubit>();
+    final thumbImageFromState = thumbImageFromCubit.state;
+    final thumbnailFinal = thumbImageFromState.thumbImageC;
+
     var longitude = MediaQuery.of(context).size.height;
     var latitude = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -442,55 +450,73 @@ class _Menu39PageState extends State<Menu39Page> {
                     children: [
                       Expanded(
                         flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: thumbImage.isNotEmpty
-                              ? MyBadgeWidget(
-                                  myBadgeContent: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return DeleteDialog(
-                                              myChild: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary: Colorss
-                                                              .primaryRed),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      thumbImage = '';
-                                                    });
-                                                    print('deleted pressed...');
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Yes')),
-                                            );
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colorss.bgColor,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  childWidget: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        showImageDialogCarousel(context,
-                                            thumbImageList, 'thumbnail', 0);
-                                      },
-                                      child: Image.network(
-                                        thumbImage,
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.fill,
+                        child:
+                            BlocBuilder<Menu39ImagesCubit, Menu39ImagesState>(
+                          builder: (context, state) {
+                            return Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                              child: thumbnailFinal != null
+                                  ? MyBadgeWidget(
+                                      myBadgeContent: GestureDetector(
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return DeleteDialog(
+                                                  myChild: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              primary: Colorss
+                                                                  .primaryRed),
+                                                      onPressed: () {
+                                                        context
+                                                            .read<
+                                                                Menu39ImagesCubit>()
+                                                            .deleteThumbnail();
+                                                        //thumbnailFinal = null;
+                                                        print(
+                                                            'deleted pressed...');
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Text('Yes')),
+                                                );
+                                              });
+                                        },
+                                        child: const Icon(
+                                          Icons.close,
+                                          color: Colorss.bgColor,
+                                          size: 16,
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                )
-                              : showDottedBoxContainer(),
+                                      childWidget: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            //showImageDialogCarousel(context,
+                                            // thumbImageList, 'thumbnail', 0);
+                                            showImageDialogThumb(
+                                                context, thumbImage);
+                                          },
+                                          child: thumbnailFinal != null
+                                              ? Image.file(
+                                                  thumbnailFinal,
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.cover,
+                                                )
+                                              : Image.network(
+                                                  thumbImage,
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                        ),
+                                      ),
+                                    )
+                                  : showDottedBoxContainer(),
+                            );
+                          },
                         ),
                       ),
                       Expanded(
@@ -855,47 +881,6 @@ showDottedBoxContainer() {
   );
 }
 
-// showImageDialog(context, imgView, imgTitle) {
-//   return showDialog(
-//       context: context,
-//       builder: (context) {
-//         return Center(
-//           child: Material(
-//             type: MaterialType.transparency,
-//             child: Container(
-//               padding: const EdgeInsets.all(16),
-//               width: MediaQuery.of(context).size.width * 0.8,
-//               height: MediaQuery.of(context).size.height * 0.6,
-//               decoration: BoxDecoration(
-//                 borderRadius: BorderRadius.circular(8),
-//                 color: Colorss.bgColor,
-//               ),
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   Expanded(
-//                     flex: 8,
-//                     child: ClipRRect(
-//                       borderRadius: BorderRadius.circular(8),
-//                       child: Image.network(
-//                         imgView,
-//                         fit: BoxFit.cover,
-//                       ),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 16,
-//                   ),
-//                   Expanded(flex: 1, child: Text(imgTitle)),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         );
-//       });
-// }
-
 showImageDialogCarousel(context, imgViewList, imageType, startImage) {
   return showDialog(
       context: context,
@@ -934,7 +919,7 @@ showImageDialogCarousel(context, imgViewList, imageType, startImage) {
                           ),
                         ),
                         const SizedBox(
-                          height: 16,
+                          height: 24,
                         ),
                         Expanded(
                             flex: 1,
@@ -954,6 +939,44 @@ showImageDialogCarousel(context, imgViewList, imageType, startImage) {
                     enableInfiniteScroll: false,
                     initialPage: startImage,
                   )),
+            ),
+          ),
+        );
+      });
+}
+
+showImageDialogThumb(context, imgView) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Material(
+            type: MaterialType.transparency,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.6,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colorss.bgColor,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                      flex: 8,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            imgView,
+                            fit: BoxFit.cover,
+                          ))),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  const Expanded(flex: 1, child: Text('Thumbnail')),
+                ],
+              ),
             ),
           ),
         );

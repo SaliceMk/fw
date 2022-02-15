@@ -40,6 +40,9 @@ dependencies:
   modal_bottom_sheet: ^2.0.0
   badges: ^2.0.2
   carousel_slider: ^4.0.0
+  image_picker: ^0.8.4+8
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:
