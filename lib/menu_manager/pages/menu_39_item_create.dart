@@ -12,7 +12,6 @@ import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_c
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:foodwifi_trial/router/app_router.dart';
-import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -66,9 +65,9 @@ class _Menu39PageState extends State<Menu39Page> {
 
   @override
   Widget build(BuildContext context) {
-    final thumbImageFromCubit = context.watch<Menu39ImagesCubit>();
-    final thumbImageFromState = thumbImageFromCubit.state;
-    final thumbnailFinal = thumbImageFromState.thumbImageC;
+    // final thumbImageFromCubit = context.watch<Menu39ImagesCubit>();
+    // final thumbImageFromState = thumbImageFromCubit.state;
+    // final thumbnailFinal = thumbImageFromState.thumbImageC;
 
     var longitude = MediaQuery.of(context).size.height;
     var latitude = MediaQuery.of(context).size.width;
@@ -439,9 +438,7 @@ class _Menu39PageState extends State<Menu39Page> {
                 ),
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 26, 0, 2),
-                  child: Text(
-                    'Thumbnail',
-                  ),
+                  child: Text("Thumbnail"),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
@@ -450,74 +447,49 @@ class _Menu39PageState extends State<Menu39Page> {
                     children: [
                       Expanded(
                         flex: 2,
-                        child:
-                            BlocBuilder<Menu39ImagesCubit, Menu39ImagesState>(
-                          builder: (context, state) {
-                            return Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                              child: thumbnailFinal != null
-                                  ? MyBadgeWidget(
-                                      myBadgeContent: GestureDetector(
-                                        onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return DeleteDialog(
-                                                  myChild: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                              primary: Colorss
-                                                                  .primaryRed),
-                                                      onPressed: () {
-                                                        context
-                                                            .read<
-                                                                Menu39ImagesCubit>()
-                                                            .deleteThumbnail();
-                                                        //thumbnailFinal = null;
-                                                        print(
-                                                            'deleted pressed...');
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: Text('Yes')),
-                                                );
-                                              });
-                                        },
-                                        child: const Icon(
-                                          Icons.close,
-                                          color: Colorss.bgColor,
-                                          size: 16,
-                                        ),
-                                      ),
-                                      childWidget: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: GestureDetector(
+                        child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                            child: BlocBuilder<Menu39ImagesCubit,
+                                Menu39ImagesState>(
+                              builder: (context, state) {
+                                return state.thumbImageC != null
+                                    ? MyBadgeWidget(
+                                        myBadgeContent: GestureDetector(
                                           onTap: () {
-                                            //showImageDialogCarousel(context,
-                                            // thumbImageList, 'thumbnail', 0);
-                                            showImageDialogThumb(
-                                                context, thumbImage);
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return const DeleteDialog();
+                                                });
                                           },
-                                          child: thumbnailFinal != null
-                                              ? Image.file(
-                                                  thumbnailFinal,
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : Image.network(
-                                                  thumbImage,
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.cover,
-                                                ),
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colorss.bgColor,
+                                            size: 16,
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  : showDottedBoxContainer(),
-                            );
-                          },
-                        ),
+                                        childWidget: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              //showImageDialogCarousel(context,
+                                              // thumbImageList, 'thumbnail', 0);
+                                              showImageDialogThumb(
+                                                  context, thumbImage);
+                                            },
+                                            child: Image.file(
+                                              state.thumbImageC!,
+                                              width: 100,
+                                              height: 100,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : showDottedBoxContainer();
+                              },
+                            )),
                       ),
                       Expanded(
                         flex: 6,
@@ -559,21 +531,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return DeleteDialog(
-                                              myChild: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary: Colorss
-                                                              .primaryRed),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      sliderImage1 = '';
-                                                    });
-                                                    print('deleted pressed...');
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Yes')),
-                                            );
+                                            return const DeleteDialog();
                                           });
                                     },
                                     child: const Icon(
@@ -615,21 +573,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return DeleteDialog(
-                                              myChild: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary: Colorss
-                                                              .primaryRed),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      sliderImage2 = '';
-                                                    });
-                                                    print('deleted pressed...');
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Yes')),
-                                            );
+                                            return const DeleteDialog();
                                           });
                                     },
                                     child: const Icon(
@@ -669,21 +613,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return DeleteDialog(
-                                              myChild: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary: Colorss
-                                                              .primaryRed),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      sliderImage3 = '';
-                                                    });
-                                                    print('deleted pressed...');
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Yes')),
-                                            );
+                                            return const DeleteDialog();
                                           });
                                     },
                                     child: const Icon(
@@ -723,21 +653,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return DeleteDialog(
-                                              myChild: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          primary: Colorss
-                                                              .primaryRed),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      sliderImage4 = '';
-                                                    });
-                                                    print('deleted pressed...');
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('Yes')),
-                                            );
+                                            return const DeleteDialog();
                                           });
                                     },
                                     child: const Icon(
@@ -781,6 +697,7 @@ class _Menu39PageState extends State<Menu39Page> {
                     showCupertinoModalBottomSheet(
                         expand: false,
                         context: context,
+                        backgroundColor: Colors.black.withOpacity(0),
                         builder: (context) => const BottomSheetWidget());
                   },
                   child: Padding(

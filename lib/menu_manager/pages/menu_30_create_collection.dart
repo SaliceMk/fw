@@ -101,14 +101,36 @@ class _Menu30PageState extends State<Menu30Page> {
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Image.asset(
-                      'assets/images/ListViewLayout.png',
-                      width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(4),
+                      child: dropDownValue == 'List View'
+                          ? Image.asset(
+                              'assets/images/ListViewLayout.png',
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              fit: BoxFit.fill,
+                            )
+                          : dropDownValue == 'Grid View'
+                              ? Image.asset(
+                                  'assets/images/gridview.png',
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.25,
+                                  fit: BoxFit.fill,
+                                )
+                              : Image.asset(
+                                  'assets/images/noodle.png',
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.25,
+                                  fit: BoxFit.fill,
+                                )
+                      // child: Image.asset(
+                      //   'assets/images/ListViewLayout.png',
+                      //   width: double.infinity,
+                      //   height: MediaQuery.of(context).size.height * 0.25,
+                      //   fit: BoxFit.fill,
+                      // ),
+                      ),
                 ),
                 const Text(
                   'List View',

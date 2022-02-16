@@ -37,6 +37,7 @@ class _DottedBorderContainerState extends State<DottedBorderContainer> {
     return DottedBorder(
       child: InkWell(
         onTap: () => showCupertinoModalBottomSheet(
+            backgroundColor: Colors.black.withOpacity(0.09),
             expand: false,
             context: context,
             builder: (context) => const BottomSheetWidget()),

@@ -72,7 +72,11 @@ class BottomSheetWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: InkWell(
-              onTap: () => print('Camera pressed....'),
+              onTap: () {
+                print('Gallery pressed....');
+                BlocProvider.of<Menu39ImagesCubit>(context)
+                    .pickImage(ImageSource.camera);
+              },
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

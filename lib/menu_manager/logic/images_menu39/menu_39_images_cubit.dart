@@ -9,7 +9,10 @@ import 'package:meta/meta.dart';
 part 'menu_39_images_state.dart';
 
 class Menu39ImagesCubit extends Cubit<Menu39ImagesState> {
-  Menu39ImagesCubit() : super(Menu39ImagesState(thumbImageC: null));
+  Menu39ImagesCubit()
+      : super(Menu39ImagesState(
+          thumbImageC: null,
+        ));
 
   Future pickImage(ImageSource source) async {
     try {
@@ -19,13 +22,23 @@ class Menu39ImagesCubit extends Cubit<Menu39ImagesState> {
       final imageTempo = File(image.path);
       //image = imageTempo;
       //state.thumbImageC = image.toString();
-      emit(Menu39ImagesState(thumbImageC: state.thumbImageC = imageTempo));
+      emit(Menu39ImagesState(
+        thumbImageC: state.thumbImageC = imageTempo,
+      ));
+      print('Image PICKED!!!');
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
   }
 
   void deleteThumbnail() {
-    emit(Menu39ImagesState(thumbImageC: state.thumbImageC = null));
+    try {
+      emit(Menu39ImagesState(
+        thumbImageC: state.thumbImageC = null,
+      ));
+      print('Dleted!');
+    } catch (e) {
+      print('Delete failed!...$e');
+    }
   }
 }

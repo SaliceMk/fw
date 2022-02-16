@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
 
 class DeleteDialog extends StatelessWidget {
-  const DeleteDialog({Key? key, required this.myChild}) : super(key: key);
-  final Widget myChild;
+  const DeleteDialog({
+    Key? key,
+  }) : super(key: key);
+  // final Widget myChild;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,22 @@ class DeleteDialog extends StatelessWidget {
                           )),
                       Expanded(
                         flex: 1,
-                        child: myChild,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Colorss.primaryRed),
+                            onPressed: () {
+                              BlocProvider.of<Menu39ImagesCubit>(context)
+                                  .deleteThumbnail();
+                              print("After blocProvider delete");
+                              // state.thumbImageC ==
+                              //      null
+                              //   ? print(
+                              //   'deleted pressed...value is null now')
+                              // : print(
+                              //     'Image present///');
+                              Navigator.pop(context);
+                            },
+                            child: Text('Yes')),
                       ),
                     ],
                   ))
