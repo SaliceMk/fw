@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
-import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog({
@@ -58,7 +58,7 @@ class DeleteDialog extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 primary: Colorss.primaryRed),
                             onPressed: () {
-                              BlocProvider.of<Menu39ImagesCubit>(context)
+                              BlocProvider.of<ThumbnailImageCubit>(context)
                                   .deleteThumbnail();
                               print("After blocProvider delete");
                               // state.thumbImageC ==

@@ -1,7 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
+
+import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 import '../../../colors/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +37,7 @@ class BottomSheetWidget extends StatelessWidget {
               splashColor: Colorss.primaryRed,
               onTap: () {
                 print('Gallery pressed....');
-                BlocProvider.of<Menu39ImagesCubit>(context)
+                BlocProvider.of<ThumbnailImageCubit>(context)
                     .pickImage(ImageSource.gallery);
                 // var img = pickImage(ImageSource.gallery);
               },
@@ -74,7 +73,7 @@ class BottomSheetWidget extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 print('Gallery pressed....');
-                BlocProvider.of<Menu39ImagesCubit>(context)
+                BlocProvider.of<ThumbnailImageCubit>(context)
                     .pickImage(ImageSource.camera);
               },
               child: Center(

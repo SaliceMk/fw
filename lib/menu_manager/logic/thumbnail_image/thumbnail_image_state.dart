@@ -3,9 +3,11 @@ part of 'menu_39_images_cubit.dart';
 //@immutable
 class Menu39ImagesState {
   Menu39ImagesState({
-    required this.thumbImageC,
+    this.thumbImageC,
+    this.multipleImages,
   });
   File? thumbImageC;
+  List<XFile>? multipleImages;
 
   // @override
   //List<Object?> get props => [thumbImageC, testString];

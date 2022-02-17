@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:foodwifi_trial/menu_manager/logic/images_menu39/menu_39_images_cubit.dart';
+
+import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -53,12 +54,6 @@ class _Menu39PageState extends State<Menu39Page> {
   String sliderImage4 =
       'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80';
 
-  List<String> sliderImagesList = [
-    'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-    'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
-    'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-    'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
-  ];
   List<String> thumbImageList = [
     'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'
   ];
@@ -449,8 +444,8 @@ class _Menu39PageState extends State<Menu39Page> {
                         flex: 2,
                         child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                            child: BlocBuilder<Menu39ImagesCubit,
-                                Menu39ImagesState>(
+                            child: BlocBuilder<ThumbnailImageCubit,
+                                ThumbnailImageState>(
                               builder: (context, state) {
                                 return state.thumbImageC != null
                                     ? MyBadgeWidget(
@@ -476,7 +471,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                               //showImageDialogCarousel(context,
                                               // thumbImageList, 'thumbnail', 0);
                                               showImageDialogThumb(
-                                                  context, thumbImage);
+                                                  context, state.thumbImageC!);
                                             },
                                             child: Image.file(
                                               state.thumbImageC!,
@@ -515,176 +510,25 @@ class _Menu39PageState extends State<Menu39Page> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: sliderImage1.isNotEmpty
-                              ? MyBadgeWidget(
-                                  myBadgeContent: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const DeleteDialog();
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colorss.bgColor,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  childWidget: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: GestureDetector(
-                                      // onTap: () => showImageDialog(context,
-                                      //     sliderImage1, "Slider Image 1"),
-                                      onTap: () => showImageDialogCarousel(
-                                          context,
-                                          sliderImagesList,
-                                          'sliderImage',
-                                          0),
-                                      child: Image.network(
-                                        sliderImage1,
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : showDottedBoxContainer(),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        SliderSingleImage(
+                          sliderIndex: 0,
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: sliderImage2.isNotEmpty
-                              ? MyBadgeWidget(
-                                  myBadgeContent: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const DeleteDialog();
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colorss.bgColor,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  childWidget: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: GestureDetector(
-                                      onTap: () => showImageDialogCarousel(
-                                          context,
-                                          sliderImagesList,
-                                          'sliderImage',
-                                          1),
-                                      child: Image.network(
-                                        sliderImage2,
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : showDottedBoxContainer(),
+                        SliderSingleImage(
+                          sliderIndex: 1,
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: sliderImage3.isNotEmpty
-                              ? MyBadgeWidget(
-                                  myBadgeContent: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const DeleteDialog();
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colorss.bgColor,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  childWidget: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: GestureDetector(
-                                      onTap: () => showImageDialogCarousel(
-                                          context,
-                                          sliderImagesList,
-                                          'sliderImage',
-                                          2),
-                                      child: Image.network(
-                                        sliderImage3,
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : showDottedBoxContainer(),
+                        SliderSingleImage(
+                          sliderIndex: 2,
                         ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: sliderImage4.isNotEmpty
-                              ? MyBadgeWidget(
-                                  myBadgeContent: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const DeleteDialog();
-                                          });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colorss.bgColor,
-                                      size: 16,
-                                    ),
-                                  ),
-                                  childWidget: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        //print('Slider image4 tapped....');
-                                        showImageDialogCarousel(context,
-                                            sliderImagesList, 'sliderImage', 3);
-                                      },
-                                      child: Image.network(
-                                        sliderImage4,
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : showDottedBoxContainer(),
+                        SliderSingleImage(
+                          sliderIndex: 3,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                      ],
+                    )),
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
                   child: Text(
@@ -731,7 +575,10 @@ class _Menu39PageState extends State<Menu39Page> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    BlocProvider.of<ThumbnailImageCubit>(context)
+                        .multiImagePicker();
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -783,85 +630,6 @@ class _Menu39PageState extends State<Menu39Page> {
   }
 }
 
-showDottedBoxContainer() {
-  return const DottedBorderContainer(
-    width: 100,
-    height: 100,
-    icon: Icon(
-      Icons.add_circle_outline,
-      color: Colorss.greyText,
-      size: 30,
-    ),
-    borderColor: Colorss.amberBtnBorder,
-    borderRadius: 8.0,
-    fillColor: Colorss.border,
-  );
-}
-
-showImageDialogCarousel(context, imgViewList, imageType, startImage) {
-  return showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.6,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colorss.bgColor,
-              ),
-              child: CarouselSlider.builder(
-                  itemCount: imgViewList.length,
-                  itemBuilder: (context, index, realIndex) {
-                    final sliderImage = imgViewList[index];
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 10,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8),
-                            width: double.infinity,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                sliderImage,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: imageType == 'thumbnail'
-                                ? const Text('Thumbnail')
-                                : Text(
-                                    'Slider Image ' + (index + 1).toString())),
-                      ],
-                    );
-                  },
-                  options: CarouselOptions(
-                    viewportFraction: imageType == 'thumbnail' ? 1 : 0.8,
-                    height: 350,
-                    //aspectRatio: 16 / 9,
-                    enlargeCenterPage: true,
-                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    enableInfiniteScroll: false,
-                    initialPage: startImage,
-                  )),
-            ),
-          ),
-        );
-      });
-}
-
 showImageDialogThumb(context, imgView) {
   return showDialog(
       context: context,
@@ -884,8 +652,9 @@ showImageDialogThumb(context, imgView) {
                       flex: 8,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
+                          child: Image.file(
                             imgView,
+                            width: double.infinity,
                             fit: BoxFit.cover,
                           ))),
                   const SizedBox(
