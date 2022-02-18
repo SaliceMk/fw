@@ -10,19 +10,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class BottomSheetWidget extends StatelessWidget {
   const BottomSheetWidget({Key? key}) : super(key: key);
 
-  // Future pickImage(ImageSource source) async {
-  //   try {
-  //     XFile? image = await ImagePicker().pickImage(source: source);
-  //     if (image == null) return null;
-  //     final imageTempo = File(image.path);
-  //     image = imageTempo as XFile?;
-  //     return image;
-  //   } on PlatformException catch (e) {
-  //     print('Failed to pick image: $e');
-  //     return null;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     var longitude = MediaQuery.of(context).size.height;

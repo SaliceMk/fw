@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog({
     Key? key,
+    required this.itemToDelete,
+    required this.index,
   }) : super(key: key);
   // final Widget myChild;
+  final String itemToDelete;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +62,20 @@ class DeleteDialog extends StatelessWidget {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 primary: Colorss.primaryRed),
-                            onPressed: () {
-                              BlocProvider.of<ThumbnailImageCubit>(context)
-                                  .deleteThumbnail();
-                              print("After blocProvider delete");
-                              // state.thumbImageC ==
-                              //      null
-                              //   ? print(
-                              //   'deleted pressed...value is null now')
-                              // : print(
-                              //     'Image present///');
-                              Navigator.pop(context);
-                            },
+                            onPressed: itemToDelete != 'sliderImages'
+                                ? () {
+                                    BlocProvider.of<ThumbnailImageCubit>(
+                                            context)
+                                        .deleteThumbnail();
+
+                                    Navigator.pop(context);
+                                  }
+                                : () {
+                                    // BlocProvider.of<SliderImageCubit>(context)
+                                    //     .deleteSliderImage(index);
+                                    //context.router.pop();
+                                    Navigator.pop(context);
+                                  },
                             child: Text('Yes')),
                       ),
                     ],

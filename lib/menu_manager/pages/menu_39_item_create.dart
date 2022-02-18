@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
@@ -454,7 +455,10 @@ class _Menu39PageState extends State<Menu39Page> {
                                             showDialog(
                                                 context: context,
                                                 builder: (context) {
-                                                  return const DeleteDialog();
+                                                  return const DeleteDialog(
+                                                    itemToDelete: 'thumbnail',
+                                                    index: 1,
+                                                  );
                                                 });
                                           },
                                           child: const Icon(
@@ -468,8 +472,6 @@ class _Menu39PageState extends State<Menu39Page> {
                                               BorderRadius.circular(8),
                                           child: GestureDetector(
                                             onTap: () {
-                                              //showImageDialogCarousel(context,
-                                              // thumbImageList, 'thumbnail', 0);
                                               showImageDialogThumb(
                                                   context, state.thumbImageC!);
                                             },
@@ -511,23 +513,38 @@ class _Menu39PageState extends State<Menu39Page> {
                 ),
                 Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        SliderSingleImage(
-                          sliderIndex: 0,
-                        ),
-                        SliderSingleImage(
-                          sliderIndex: 1,
-                        ),
-                        SliderSingleImage(
-                          sliderIndex: 2,
-                        ),
-                        SliderSingleImage(
-                          sliderIndex: 3,
-                        ),
-                      ],
+                    child: BlocListener<SliderImageCubit, SliderImageState>(
+                      listener: (context, state) {
+                        // TODO: implement listener
+                        if (state.imageSelectionStatus ==
+                            ImageSelectionStatus.fail) {
+                          Scaffold.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'Failed to select right number of slider images!*'),
+                              duration: Duration(seconds: 3),
+                            ),
+                          );
+                        }
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          SliderSingleImage(
+                            sliderIndex: 0,
+                          ),
+                          SliderSingleImage(
+                            sliderIndex: 1,
+                          ),
+                          SliderSingleImage(
+                            sliderIndex: 2,
+                          ),
+                          SliderSingleImage(
+                            sliderIndex: 3,
+                          ),
+                        ],
+                      ),
                     )),
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
@@ -576,7 +593,7 @@ class _Menu39PageState extends State<Menu39Page> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    BlocProvider.of<ThumbnailImageCubit>(context)
+                    BlocProvider.of<SliderImageCubit>(context)
                         .multiImagePicker();
                   },
                   child: Padding(

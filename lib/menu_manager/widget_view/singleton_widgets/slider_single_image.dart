@@ -20,16 +20,19 @@ class SliderSingleImage extends StatefulWidget {
 }
 
 class _SliderSingleImageState extends State<SliderSingleImage> {
-  // List<String> sliderImagesList = [
-  //   'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-  //   'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
-  //   'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-  //   'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SliderImageCubit, SliderImageState>(
+      // listener: (context, state) {
+      //   if (state.imageSelectionStatus == ImageSelectionStatus.fail) {
+      //     Scaffold.of(context).showSnackBar(
+      //       const SnackBar(
+      //         content: Text('Failed to select right number of slider images!*'),
+      //         duration: Duration(milliseconds: 500),
+      //       ),
+      //     );
+      //   }
+      //},
       builder: (context, state) {
         return Expanded(
           flex: 2,
@@ -42,7 +45,10 @@ class _SliderSingleImageState extends State<SliderSingleImage> {
                         showDialog(
                             context: context,
                             builder: (context) {
-                              return const DeleteDialog();
+                              return DeleteDialog(
+                                itemToDelete: 'sliderImages',
+                                index: widget.sliderIndex,
+                              );
                             });
                       },
                       child: const Icon(

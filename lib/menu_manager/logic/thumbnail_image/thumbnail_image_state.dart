@@ -1,13 +1,13 @@
-part of 'menu_39_images_cubit.dart';
+part of 'thumbnail_image_cubit.dart';
 
 //@immutable
-class Menu39ImagesState {
-  Menu39ImagesState({
+class ThumbnailImageState {
+  ThumbnailImageState({
     this.thumbImageC,
-    this.multipleImages,
+    //this.multipleImages,
   });
   File? thumbImageC;
-  List<XFile>? multipleImages;
+  // List<XFile>? multipleImages;
 
   // @override
   //List<Object?> get props => [thumbImageC, testString];
