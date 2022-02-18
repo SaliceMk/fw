@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 import '../../../colors/colors.dart';
@@ -8,11 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget({Key? key}) : super(key: key);
+  const BottomSheetWidget({Key? key, required this.sliderImageType})
+      : super(key: key);
 
+  final String sliderImageType;
   @override
   Widget build(BuildContext context) {
     var longitude = MediaQuery.of(context).size.height;
+
     return Container(
       height: longitude / 6,
       decoration: const BoxDecoration(color: Colorss.primaryRed),
@@ -22,12 +26,14 @@ class BottomSheetWidget extends StatelessWidget {
             flex: 1,
             child: InkWell(
               splashColor: Colorss.primaryRed,
-              onTap: () {
-                print('Gallery pressed....');
-                BlocProvider.of<ThumbnailImageCubit>(context)
-                    .pickImage(ImageSource.gallery);
-                // var img = pickImage(ImageSource.gallery);
-              },
+              onTap: sliderImageType == 'sliderImage1'
+                  ? () {
+                      //print('Gallery pressed....');
+                      BlocProvider.of<SliderImage1Cubit>(context)
+                          .pickImage(ImageSource.gallery);
+                      // var img = pickImage(ImageSource.gallery);
+                    }
+                  : () {},
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

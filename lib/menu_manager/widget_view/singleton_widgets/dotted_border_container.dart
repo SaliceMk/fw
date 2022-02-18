@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
+import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -18,6 +19,7 @@ class DottedBorderContainer extends StatefulWidget {
     required this.borderColor,
     required this.borderRadius,
     required this.fillColor,
+    required this.sliderImageType,
   });
 
   final double width;
@@ -26,6 +28,7 @@ class DottedBorderContainer extends StatefulWidget {
   final Color borderColor;
   final double borderRadius;
   final Color fillColor;
+  final String sliderImageType;
 
   @override
   _DottedBorderContainerState createState() => _DottedBorderContainerState();
@@ -40,7 +43,8 @@ class _DottedBorderContainerState extends State<DottedBorderContainer> {
             backgroundColor: Colors.black.withOpacity(0.09),
             expand: false,
             context: context,
-            builder: (context) => const BottomSheetWidget()),
+            builder: (context) =>
+                const BottomSheetWidget(sliderImageType: 'sliderImage1')),
         child: Container(
             height: widget.height,
             width: widget.width,

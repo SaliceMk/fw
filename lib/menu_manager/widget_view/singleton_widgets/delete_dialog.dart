@@ -8,11 +8,11 @@ class DeleteDialog extends StatelessWidget {
   const DeleteDialog({
     Key? key,
     required this.itemToDelete,
-    required this.index,
+    //required this.index,
   }) : super(key: key);
   // final Widget myChild;
   final String itemToDelete;
-  final int index;
+  //final int index;
 
   @override
   Widget build(BuildContext context) {

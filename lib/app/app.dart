@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
 import '../router/app_router.dart';
@@ -19,6 +20,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<SliderImageCubit>(
           create: (BuildContext context) => SliderImageCubit(),
+        ),
+        BlocProvider<SliderImage1Cubit>(
+          create: (BuildContext context) => SliderImage1Cubit(),
         ),
       ],
       child: MaterialApp.router(

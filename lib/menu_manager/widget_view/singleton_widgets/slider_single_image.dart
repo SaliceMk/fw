@@ -23,16 +23,6 @@ class _SliderSingleImageState extends State<SliderSingleImage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SliderImageCubit, SliderImageState>(
-      // listener: (context, state) {
-      //   if (state.imageSelectionStatus == ImageSelectionStatus.fail) {
-      //     Scaffold.of(context).showSnackBar(
-      //       const SnackBar(
-      //         content: Text('Failed to select right number of slider images!*'),
-      //         duration: Duration(milliseconds: 500),
-      //       ),
-      //     );
-      //   }
-      //},
       builder: (context, state) {
         return Expanded(
           flex: 2,
@@ -47,7 +37,7 @@ class _SliderSingleImageState extends State<SliderSingleImage> {
                             builder: (context) {
                               return DeleteDialog(
                                 itemToDelete: 'sliderImages',
-                                index: widget.sliderIndex,
+                                // index: widget.sliderIndex,
                               );
                             });
                       },
@@ -91,6 +81,7 @@ showDottedBoxContainer() {
     borderColor: Colorss.amberBtnBorder,
     borderRadius: 8.0,
     fillColor: Colorss.border,
+    sliderImageType: '',
   );
 }
 

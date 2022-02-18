@@ -457,7 +457,7 @@ class _Menu39PageState extends State<Menu39Page> {
                                                 builder: (context) {
                                                   return const DeleteDialog(
                                                     itemToDelete: 'thumbnail',
-                                                    index: 1,
+                                                    //index: 1,
                                                   );
                                                 });
                                           },
@@ -531,8 +531,8 @@ class _Menu39PageState extends State<Menu39Page> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [
-                          SliderSingleImage(
-                            sliderIndex: 0,
+                          SliderImage1234Widget(
+                            sliderImageType: 'sliderImage1',
                           ),
                           SliderSingleImage(
                             sliderIndex: 1,
@@ -559,7 +559,9 @@ class _Menu39PageState extends State<Menu39Page> {
                         expand: false,
                         context: context,
                         backgroundColor: Colors.black.withOpacity(0),
-                        builder: (context) => const BottomSheetWidget());
+                        builder: (context) => const BottomSheetWidget(
+                              sliderImageType: '',
+                            ));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
