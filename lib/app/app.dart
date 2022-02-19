@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image2/slider_image2_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image3/slider_image3_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image4/slider_image4_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
 import '../router/app_router.dart';
@@ -23,6 +26,15 @@ class App extends StatelessWidget {
         ),
         BlocProvider<SliderImage1Cubit>(
           create: (BuildContext context) => SliderImage1Cubit(),
+        ),
+        BlocProvider<SliderImage2Cubit>(
+          create: (BuildContext context) => SliderImage2Cubit(),
+        ),
+        BlocProvider<SliderImage3Cubit>(
+          create: (BuildContext context) => SliderImage3Cubit(),
+        ),
+        BlocProvider<SliderImage4Cubit>(
+          create: (BuildContext context) => SliderImage4Cubit(),
         ),
       ],
       child: MaterialApp.router(

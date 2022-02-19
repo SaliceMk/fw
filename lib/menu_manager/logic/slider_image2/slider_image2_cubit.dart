@@ -1,16 +1,18 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+//import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
-part 'slider_image1_state.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
 
-class SliderImage1Cubit extends Cubit<SliderImage1State> {
-  SliderImage1Cubit() : super(SliderImage1State());
+part 'slider_image2_state.dart';
+
+class SliderImage2Cubit extends Cubit<SliderImage2State> {
+  SliderImage2Cubit() : super(SliderImage2State());
 
   Future pickImage(ImageSource source) async {
     try {
@@ -20,8 +22,8 @@ class SliderImage1Cubit extends Cubit<SliderImage1State> {
       final imagePermanent = await saveImagePermanently(image.path);
       var imageName = imagePermanent.path.split('/').last;
 
-      emit(SliderImage1State(
-        slider_image1: state.slider_image1 = imagePermanent,
+      emit(SliderImage2State(
+        slider_image2: state.slider_image2 = imagePermanent,
       ));
       print('Image PICKED!!! $imageName');
     } on PlatformException catch (e) {
@@ -29,12 +31,12 @@ class SliderImage1Cubit extends Cubit<SliderImage1State> {
     }
   }
 
-  void deleteSliderImage1() {
+  void deleteSliderImage2() {
     try {
-      emit(SliderImage1State(
-        slider_image1: state.slider_image1 = null,
+      emit(SliderImage2State(
+        slider_image2: state.slider_image2 = null,
       ));
-      print('Slider image 1 Deleted!');
+      print('Slider image 2 Deleted!');
     } catch (e) {
       print('Delete failed!...$e');
     }

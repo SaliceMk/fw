@@ -8,6 +8,10 @@ import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image2/slider_image2_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image3/slider_image3_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image4/slider_image4_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 
@@ -43,21 +47,23 @@ class _Menu39PageState extends State<Menu39Page> {
     textController4 = TextEditingController();
   }
 
-  String thumbImage =
-      'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80';
-  String sliderImage1 =
-      'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80';
+  //late List<Widget> ImageDialogs;
 
-  String sliderImage2 =
-      'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
-  String sliderImage3 =
-      'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
-  String sliderImage4 =
-      'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80';
+//  // String thumbImage =
+//       'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80';
+//   String sliderImage1 =
+//       'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80';
 
-  List<String> thumbImageList = [
-    'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'
-  ];
+//   String sliderImage2 =
+//       'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
+//   String sliderImage3 =
+//       'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
+//   String sliderImage4 =
+//       'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80';
+
+  // List<String> thumbImageList = [
+  //   'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -512,40 +518,48 @@ class _Menu39PageState extends State<Menu39Page> {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: BlocListener<SliderImageCubit, SliderImageState>(
-                      listener: (context, state) {
-                        // TODO: implement listener
-                        if (state.imageSelectionStatus ==
-                            ImageSelectionStatus.fail) {
-                          Scaffold.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                  'Failed to select right number of slider images!*'),
-                              duration: Duration(seconds: 3),
-                            ),
-                          );
-                        }
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          SliderImage1234Widget(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                  // child: BlocListener<SliderImageCubit, SliderImageState>(
+                  //   listener: (context, state) {
+                  //     // TODO: implement listener
+                  //     if (state.imageSelectionStatus ==
+                  //         ImageSelectionStatus.fail) {
+                  //       Scaffold.of(context).showSnackBar(
+                  //         const SnackBar(
+                  //           content: Text(
+                  //               'Failed to select right number of slider images!*'),
+                  //           duration: Duration(seconds: 3),
+                  //         ),
+                  //       );
+                  //     }
+                  //   },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      BlocBuilder<SliderImage1Cubit, SliderImage1State>(
+                        builder: (context, state) {
+                          return SliderImage1Widget(
                             sliderImageType: 'sliderImage1',
-                          ),
-                          SliderSingleImage(
-                            sliderIndex: 1,
-                          ),
-                          SliderSingleImage(
-                            sliderIndex: 2,
-                          ),
-                          SliderSingleImage(
-                            sliderIndex: 3,
-                          ),
-                        ],
+                            passedImage: state.slider_image1,
+                          );
+                        },
                       ),
-                    )),
+                      const SliderImage2Widget(
+                        sliderImageType: 'sliderImage2',
+                      ),
+                      const SliderImage3Widget(
+                        sliderImageType: 'sliderImage3',
+                      ),
+                      const SliderImage4Widget(
+                        sliderImageType: 'sliderImage4',
+                      ),
+                      // SliderSingleImage(
+                      //   sliderIndex: 3,
+                      // ),
+                    ],
+                  ),
+                ),
                 const Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 24),
                   child: Text(
@@ -594,9 +608,9 @@ class _Menu39PageState extends State<Menu39Page> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () async {
-                    BlocProvider.of<SliderImageCubit>(context)
-                        .multiImagePicker();
+                  onPressed: () {
+                    //BlocProvider.of<SliderImageCubit>(context)
+                    //   .multiImagePicker();
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -682,6 +696,86 @@ showImageDialogThumb(context, imgView) {
                   const Expanded(flex: 1, child: Text('Thumbnail')),
                 ],
               ),
+            ),
+          ),
+        );
+      });
+}
+
+showDottedBoxContainer() {
+  return const DottedBorderContainer(
+    width: 100,
+    height: 100,
+    icon: Icon(
+      Icons.add_circle_outline,
+      color: Colorss.greyText,
+      size: 30,
+    ),
+    borderColor: Colorss.amberBtnBorder,
+    borderRadius: 8.0,
+    fillColor: Colorss.border,
+    sliderImageType: 'thumbnail',
+  );
+}
+
+showImageDialogCarousel(context, imgViewList, startImage) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Material(
+            type: MaterialType.transparency,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.6,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colorss.bgColor,
+              ),
+              child: CarouselSlider.builder(
+                  itemCount: imgViewList.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final sliderImage = imgViewList[index];
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 10,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            width: double.infinity,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.file(
+                                // File(state.multipleImages![widget.sliderIndex].path),
+                                //sliderImage,
+                                File(sliderImage.path),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child:
+                                Text('Slider Image ' + (index + 1).toString())),
+                      ],
+                    );
+                  },
+                  options: CarouselOptions(
+                    viewportFraction: 0.8,
+                    height: 350,
+                    //aspectRatio: 16 / 9,
+                    enlargeCenterPage: true,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    enableInfiniteScroll: false,
+                    initialPage: startImage,
+                  )),
             ),
           ),
         );

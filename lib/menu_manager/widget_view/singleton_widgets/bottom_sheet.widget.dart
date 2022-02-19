@@ -1,5 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image/slider_image_cubit.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image2/slider_image2_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image3/slider_image3_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/logic/slider_image4/slider_image4_cubit.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_image_cubit.dart';
 import '../../../colors/colors.dart';
@@ -8,13 +14,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class BottomSheetWidget extends StatelessWidget {
+class BottomSheetWidget extends StatefulWidget {
   const BottomSheetWidget({Key? key, required this.sliderImageType})
       : super(key: key);
 
   final String sliderImageType;
+
+  @override
+  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
+}
+
+class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
+    final cubitSliderImage1 =
+        context.watch<SliderImage1Cubit>().state.slider_image1;
+    final cubitSliderImage2 =
+        context.watch<SliderImage2Cubit>().state.slider_image2;
+    final cubitSliderImage3 =
+        context.watch<SliderImage3Cubit>().state.slider_image3;
+    final cubitSliderImage4 =
+        context.watch<SliderImage4Cubit>().state.slider_image4;
+
+    List<File?> sliderImagesList = [];
+
     var longitude = MediaQuery.of(context).size.height;
 
     return Container(
@@ -26,14 +49,53 @@ class BottomSheetWidget extends StatelessWidget {
             flex: 1,
             child: InkWell(
               splashColor: Colorss.primaryRed,
-              onTap: sliderImageType == 'sliderImage1'
-                  ? () {
-                      //print('Gallery pressed....');
+              onTap: widget.sliderImageType == 'sliderImage1'
+                  ? () async {
+                      print('Gallery pressed for Slider Image 1....');
                       BlocProvider.of<SliderImage1Cubit>(context)
                           .pickImage(ImageSource.gallery);
+                      context
+                          .read<SliderImageCubit>()
+                          .addSliderImages(cubitSliderImage1);
+
                       // var img = pickImage(ImageSource.gallery);
                     }
-                  : () {},
+                  : widget.sliderImageType == 'sliderImage2'
+                      ? () {
+                          print('Gallery pressed for Slider Image 2...');
+                          BlocProvider.of<SliderImage2Cubit>(context)
+                              .pickImage(ImageSource.gallery);
+
+                          setState(() {
+                            sliderImagesList.insert(1, cubitSliderImage2);
+                          });
+                        }
+                      : widget.sliderImageType == 'sliderImage3'
+                          ? () {
+                              print('Gallery pressed for Slider Image 3...');
+                              BlocProvider.of<SliderImage3Cubit>(context)
+                                  .pickImage(ImageSource.gallery);
+
+                              setState(() {
+                                sliderImagesList.insert(2, cubitSliderImage3);
+                              });
+                            }
+                          : widget.sliderImageType == 'sliderImage4'
+                              ? () {
+                                  print(
+                                      'Gallery pressed for Slider Image 4...');
+                                  BlocProvider.of<SliderImage4Cubit>(context)
+                                      .pickImage(ImageSource.gallery);
+                                  setState(() {
+                                    sliderImagesList.insert(
+                                        3, cubitSliderImage4);
+                                  });
+                                }
+                              : () {
+                                  print('Gallery pressed for Thumbnail....');
+                                  BlocProvider.of<ThumbnailImageCubit>(context)
+                                      .pickImage(ImageSource.gallery);
+                                },
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -64,11 +126,37 @@ class BottomSheetWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: InkWell(
-              onTap: () {
-                print('Gallery pressed....');
-                BlocProvider.of<ThumbnailImageCubit>(context)
-                    .pickImage(ImageSource.camera);
-              },
+              onTap: widget.sliderImageType == 'sliderImage1'
+                  ? () {
+                      print('Camera pressed for Slider Image 1....');
+                      BlocProvider.of<SliderImage1Cubit>(context)
+                          .pickImage(ImageSource.camera);
+                      // var img = pickImage(ImageSource.gallery);
+                    }
+                  : widget.sliderImageType == 'sliderImage2'
+                      ? () {
+                          print('Camera pressed for Slider Image 2....');
+                          BlocProvider.of<SliderImage2Cubit>(context)
+                              .pickImage(ImageSource.camera);
+                        }
+                      : widget.sliderImageType == 'sliderImage3'
+                          ? () {
+                              print('Camera pressed for Slider Image 3....');
+                              BlocProvider.of<SliderImage3Cubit>(context)
+                                  .pickImage(ImageSource.camera);
+                            }
+                          : widget.sliderImageType == 'sliderImage4'
+                              ? () {
+                                  print(
+                                      'Camera pressed for Slider Image 4....');
+                                  BlocProvider.of<SliderImage4Cubit>(context)
+                                      .pickImage(ImageSource.camera);
+                                }
+                              : () {
+                                  print('Camera pressed for Thumbnail....');
+                                  BlocProvider.of<ThumbnailImageCubit>(context)
+                                      .pickImage(ImageSource.camera);
+                                },
               child: Center(
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

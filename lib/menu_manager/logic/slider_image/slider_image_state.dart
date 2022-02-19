@@ -1,15 +1,15 @@
 part of 'slider_image_cubit.dart';
 
-enum ImageSelectionStatus {
-  success,
-  fail,
-}
+// enum ImageSelectionStatus {
+//   success,
+//   fail,
+// }
 
 class SliderImageState {
-  SliderImageState({this.multipleImages, this.imageSelectionStatus});
+  SliderImageState({this.sliderImagesList});
 
-  List<XFile>? multipleImages;
-  ImageSelectionStatus? imageSelectionStatus;
+  List<File?>? sliderImagesList;
+
   //var multipleImages =  List<XFile?>.filled(4, null, growable: false);
 
   //@override

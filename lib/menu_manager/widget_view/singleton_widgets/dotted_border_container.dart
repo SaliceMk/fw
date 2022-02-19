@@ -44,7 +44,7 @@ class _DottedBorderContainerState extends State<DottedBorderContainer> {
             expand: false,
             context: context,
             builder: (context) =>
-                const BottomSheetWidget(sliderImageType: 'sliderImage1')),
+                BottomSheetWidget(sliderImageType: widget.sliderImageType)),
         child: Container(
             height: widget.height,
             width: widget.width,

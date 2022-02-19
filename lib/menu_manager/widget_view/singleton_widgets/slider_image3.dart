@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
-import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
+
+import 'package:foodwifi_trial/menu_manager/logic/slider_image3/slider_image3_cubit.dart';
 
 import 's_widgets.dart';
 
-class SliderImage1234Widget extends StatefulWidget {
-  const SliderImage1234Widget({Key? key, required this.sliderImageType})
+class SliderImage3Widget extends StatefulWidget {
+  const SliderImage3Widget({Key? key, required this.sliderImageType})
       : super(key: key);
 
   final String sliderImageType;
 
   @override
-  _SliderImage1234WidgetState createState() => _SliderImage1234WidgetState();
+  _SliderImage3WidgetState createState() => _SliderImage3WidgetState();
 }
 
-class _SliderImage1234WidgetState extends State<SliderImage1234Widget> {
+class _SliderImage3WidgetState extends State<SliderImage3Widget> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SliderImage1Cubit, SliderImage1State>(
+    return BlocBuilder<SliderImage3Cubit, SliderImage3State>(
         builder: (context, state) {
       return Expanded(
         flex: 2,
         child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-            child: state.slider_image1 != null
+            child: state.slider_image3 != null
                 ? MyBadgeWidget(
                     myBadgeContent: GestureDetector(
                       onTap: () {
@@ -32,7 +33,7 @@ class _SliderImage1234WidgetState extends State<SliderImage1234Widget> {
                             context: context,
                             builder: (context) {
                               return const DeleteDialog(
-                                itemToDelete: 'sliderImages',
+                                itemToDelete: 'sliderImage3',
                               );
                             });
                       },
@@ -48,19 +49,20 @@ class _SliderImage1234WidgetState extends State<SliderImage1234Widget> {
                         onTap: () {},
                         // onTap: () => showImageDialogCarousel(
                         //     context, state.multipleImages!, widget.sliderIndex),
-                        // child: Image.file(
-                        //   File(state.multipleImages![widget.sliderIndex].path),
-                        //   width: 100,
-                        //   height: 100,
-                        //   fit: BoxFit.cover,
-                        // ),
+                        child: Image.file(
+                          // File(state.multipleImages![widget.sliderIndex].path),
+                          state.slider_image3!,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                          // ),
+                        ),
                       ),
-                    ),
-                  )
-                : const DottedBorderContainer(
+                    ))
+                : DottedBorderContainer(
                     width: 100,
                     height: 100,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.add_circle_outline,
                       color: Colorss.greyText,
                       size: 30,
@@ -68,7 +70,7 @@ class _SliderImage1234WidgetState extends State<SliderImage1234Widget> {
                     borderColor: Colorss.amberBtnBorder,
                     borderRadius: 8.0,
                     fillColor: Colorss.border,
-                    sliderImageType: 'sliderImage1',
+                    sliderImageType: widget.sliderImageType,
                   )),
       );
     });
