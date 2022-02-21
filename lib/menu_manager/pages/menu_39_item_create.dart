@@ -718,7 +718,9 @@ showDottedBoxContainer() {
   );
 }
 
-showImageDialogCarousel(context, imgViewList, startImage) {
+showImageDialogCarousel(context) {
+  List<File>? imgViewList = [];
+  print('====ImageDialogCarousel triggered====');
   return showDialog(
       context: context,
       builder: (context) {
@@ -733,49 +735,76 @@ showImageDialogCarousel(context, imgViewList, startImage) {
                 borderRadius: BorderRadius.circular(8),
                 color: Colorss.bgColor,
               ),
-              child: CarouselSlider.builder(
-                  itemCount: imgViewList.length,
-                  itemBuilder: (context, index, realIndex) {
-                    final sliderImage = imgViewList[index];
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 10,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8),
-                            width: double.infinity,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.file(
-                                // File(state.multipleImages![widget.sliderIndex].path),
-                                //sliderImage,
-                                File(sliderImage.path),
-                                fit: BoxFit.cover,
+              child: MultiBlocListener(
+                listeners: [
+                  BlocListener<SliderImage1Cubit, SliderImage1State>(
+                    listener: (context, state) {
+                      imgViewList.add(state.slider_image1!);
+                      print('========sliderImage1==========');
+                      print(imgViewList);
+                    },
+                  ),
+                  BlocListener<SliderImage2Cubit, SliderImage2State>(
+                    listener: (context, state) {
+                      imgViewList.add(state.slider_image2!);
+                    },
+                  ),
+                  BlocListener<SliderImage3Cubit, SliderImage3State>(
+                    listener: (context, state) {
+                      imgViewList.add(state.slider_image3!);
+                    },
+                  ),
+                  BlocListener<SliderImage4Cubit, SliderImage4State>(
+                    listener: (context, state) {
+                      imgViewList.add(state.slider_image4!);
+                    },
+                  ),
+                ],
+                child: CarouselSlider.builder(
+                    itemCount: imgViewList.length,
+                    //itemCount: imgViewList.length,
+                    itemBuilder: (context, index, realIndex) {
+                      final sliderImage = imgViewList[index];
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 10,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              width: double.infinity,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.file(
+                                  // File(state.multipleImages![widget.sliderIndex].path),
+                                  //sliderImage,
+                                  File(sliderImage.path),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child:
-                                Text('Slider Image ' + (index + 1).toString())),
-                      ],
-                    );
-                  },
-                  options: CarouselOptions(
-                    viewportFraction: 0.8,
-                    height: 350,
-                    //aspectRatio: 16 / 9,
-                    enlargeCenterPage: true,
-                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    enableInfiniteScroll: false,
-                    initialPage: startImage,
-                  )),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Text(
+                                  'Slider Image ' + (index + 1).toString())),
+                        ],
+                      );
+                    },
+                    options: CarouselOptions(
+                      viewportFraction: 0.8,
+                      height: 350,
+                      //aspectRatio: 16 / 9,
+                      enlargeCenterPage: true,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      enableInfiniteScroll: false,
+                      // initialPage: startImage,
+                    )),
+              ),
             ),
           ),
         );

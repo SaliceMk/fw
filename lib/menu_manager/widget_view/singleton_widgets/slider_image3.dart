@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/slider_image3/slider_image3_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/pages/pages.dart';
 
 import 's_widgets.dart';
 
@@ -46,9 +47,10 @@ class _SliderImage3WidgetState extends State<SliderImage3Widget> {
                     childWidget: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
-                        onTap: () {},
-                        // onTap: () => showImageDialogCarousel(
-                        //     context, state.multipleImages!, widget.sliderIndex),
+                        onTap: () {
+                          //showImageDialogThumb(context, state.slider_image3!);
+                          showImageDialogCarousel(context);
+                        },
                         child: Image.file(
                           // File(state.multipleImages![widget.sliderIndex].path),
                           state.slider_image3!,

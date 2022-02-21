@@ -36,7 +36,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     final cubitSliderImage4 =
         context.watch<SliderImage4Cubit>().state.slider_image4;
 
-    List<File?> sliderImagesList = [];
+    List<File> sliderImagesList = [];
 
     var longitude = MediaQuery.of(context).size.height;
 
@@ -50,15 +50,20 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             child: InkWell(
               splashColor: Colorss.primaryRed,
               onTap: widget.sliderImageType == 'sliderImage1'
-                  ? () async {
+                  ? () {
                       print('Gallery pressed for Slider Image 1....');
                       BlocProvider.of<SliderImage1Cubit>(context)
                           .pickImage(ImageSource.gallery);
-                      context
-                          .read<SliderImageCubit>()
-                          .addSliderImages(cubitSliderImage1);
+                      print('=====================');
+                      print(cubitSliderImage1!);
 
-                      // var img = pickImage(ImageSource.gallery);
+                      sliderImagesList.add(cubitSliderImage1);
+                      print('--------------------------');
+                      print(sliderImagesList);
+
+                      // context
+                      //     .read<SliderImageCubit>()
+                      //     .addSliderImages(cubitSliderImage1);
                     }
                   : widget.sliderImageType == 'sliderImage2'
                       ? () {
@@ -66,9 +71,9 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           BlocProvider.of<SliderImage2Cubit>(context)
                               .pickImage(ImageSource.gallery);
 
-                          setState(() {
-                            sliderImagesList.insert(1, cubitSliderImage2);
-                          });
+                          // setState(() {
+                          //   sliderImagesList.insert(1, cubitSliderImage2);
+                          // });
                         }
                       : widget.sliderImageType == 'sliderImage3'
                           ? () {
@@ -76,9 +81,9 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                               BlocProvider.of<SliderImage3Cubit>(context)
                                   .pickImage(ImageSource.gallery);
 
-                              setState(() {
-                                sliderImagesList.insert(2, cubitSliderImage3);
-                              });
+                              // setState(() {
+                              //   sliderImagesList.insert(2, cubitSliderImage3);
+                              // });
                             }
                           : widget.sliderImageType == 'sliderImage4'
                               ? () {
@@ -86,10 +91,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                                       'Gallery pressed for Slider Image 4...');
                                   BlocProvider.of<SliderImage4Cubit>(context)
                                       .pickImage(ImageSource.gallery);
-                                  setState(() {
-                                    sliderImagesList.insert(
-                                        3, cubitSliderImage4);
-                                  });
+                                  // setState(() {
+                                  //   sliderImagesList.insert(
+                                  //       3, cubitSliderImage4);
+                                  // });
                                 }
                               : () {
                                   print('Gallery pressed for Thumbnail....');

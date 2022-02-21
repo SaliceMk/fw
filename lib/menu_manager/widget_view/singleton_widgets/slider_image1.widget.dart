@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 import 'package:foodwifi_trial/menu_manager/logic/slider_image1/slider_image1_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/pages/pages.dart';
+import '../../pages/pages.dart';
 
 import 's_widgets.dart';
 
 class SliderImage1Widget extends StatefulWidget {
-  const SliderImage1Widget(
+  SliderImage1Widget(
       {Key? key, required this.sliderImageType, required this.passedImage})
       : super(key: key);
 
@@ -20,6 +22,7 @@ class SliderImage1Widget extends StatefulWidget {
 }
 
 class _SliderImage1WidgetState extends State<SliderImage1Widget> {
+  //final menu39Page = Menu39Page();
   @override
   Widget build(BuildContext context) {
     // return BlocBuilder<SliderImage1Cubit, SliderImage1State>(
@@ -49,16 +52,21 @@ class _SliderImage1WidgetState extends State<SliderImage1Widget> {
                   childWidget: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: GestureDetector(
-                      onTap: () {},
-                      // onTap: () => showImageDialogCarousel(
-                      //     context, state.multipleImages!, widget.sliderIndex),
+                      onTap: () {
+                        //showImageDialogThumb(context, widget.passedImage!);
+                        //menu39Page.showImageDialogCarousel(context);
+                        //showImageDialogCarousel(context);
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return SliderImagesCarousel();
+                            });
+                      },
                       child: Image.file(
-                        // File(state.multipleImages![widget.sliderIndex].path),
                         widget.passedImage!,
                         width: 100,
                         height: 100,
                         fit: BoxFit.cover,
-                        // ),
                       ),
                     ),
                   ))

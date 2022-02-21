@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi_trial/colors/colors.dart';
 
 import 'package:foodwifi_trial/menu_manager/logic/slider_image4/slider_image4_cubit.dart';
+import 'package:foodwifi_trial/menu_manager/pages/pages.dart';
 
 import 's_widgets.dart';
 
@@ -17,6 +18,7 @@ class SliderImage4Widget extends StatefulWidget {
 }
 
 class _SliderImage4WidgetState extends State<SliderImage4Widget> {
+  //final menu39PageOb = Menu39Page();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SliderImage4Cubit, SliderImage4State>(
@@ -46,7 +48,15 @@ class _SliderImage4WidgetState extends State<SliderImage4Widget> {
                     childWidget: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          //showImageDialogThumb(context, state.slider_image4!);
+                          //showImageDialogCarousel(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SliderImagesCarousel();
+                              });
+                        },
                         // onTap: () => showImageDialogCarousel(
                         //     context, state.multipleImages!, widget.sliderIndex),
                         child: Image.file(
