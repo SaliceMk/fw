@@ -51,7 +51,12 @@ class _SliderImage2WidgetState extends State<SliderImage2Widget> {
                       child: GestureDetector(
                         onTap: () {
                           //showImageDialogThumb(context, state.slider_image2!);
-                          showImageDialogCarousel(context);
+                          //showImageDialogCarousel(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SliderImagesCarousel();
+                              });
                         },
                         child: Image.file(
                           // File(state.multipleImages![widget.sliderIndex].path),

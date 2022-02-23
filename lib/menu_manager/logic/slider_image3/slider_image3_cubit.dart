@@ -40,6 +40,14 @@ class SliderImage3Cubit extends Cubit<SliderImage3State> {
       print('Delete failed!...$e');
     }
   }
+
+  void addImageFromMultiImagePicker(XFile image) async {
+    final imagePermanent = await saveImagePermanently(image.path);
+
+    emit(SliderImage3State(
+      slider_image3: state.slider_image3 = imagePermanent,
+    ));
+  }
 }
 
 Future<File> saveImagePermanently(String imagePath) async {

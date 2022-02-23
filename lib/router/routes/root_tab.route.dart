@@ -26,7 +26,7 @@ const rootTabRoute = AutoRoute(page: RootTabPage, initial: true, children: [
     AutoRoute(page: SelectSuggestedItemsPage),
   ]),
   AutoRoute(page: EmptyRouterPage, name: 'OrderManagerTabRoute', children: [
-    AutoRoute(page: Om54Page, path: ''),
+    AutoRoute(page: OrderFrontPage, path: ''),
   ]),
   AutoRoute(
       page: EmptyRouterPage,

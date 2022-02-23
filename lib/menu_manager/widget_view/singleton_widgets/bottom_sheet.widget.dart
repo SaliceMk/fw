@@ -55,11 +55,11 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                       BlocProvider.of<SliderImage1Cubit>(context)
                           .pickImage(ImageSource.gallery);
                       print('=====================');
-                      print(cubitSliderImage1!);
+                      // print(cubitSliderImage1!);
 
-                      sliderImagesList.add(cubitSliderImage1);
-                      print('--------------------------');
-                      print(sliderImagesList);
+                      // sliderImagesList.add(cubitSliderImage1);
+                      // print('--------------------------');
+                      // print(sliderImagesList);
 
                       // context
                       //     .read<SliderImageCubit>()

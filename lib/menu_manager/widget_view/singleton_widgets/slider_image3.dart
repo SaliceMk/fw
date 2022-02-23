@@ -18,6 +18,7 @@ class SliderImage3Widget extends StatefulWidget {
 }
 
 class _SliderImage3WidgetState extends State<SliderImage3Widget> {
+  //final menu39PageOb = Menu39Page();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SliderImage3Cubit, SliderImage3State>(
@@ -49,7 +50,12 @@ class _SliderImage3WidgetState extends State<SliderImage3Widget> {
                       child: GestureDetector(
                         onTap: () {
                           //showImageDialogThumb(context, state.slider_image3!);
-                          showImageDialogCarousel(context);
+                          //showImageDialogCarousel(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SliderImagesCarousel();
+                              });
                         },
                         child: Image.file(
                           // File(state.multipleImages![widget.sliderIndex].path),

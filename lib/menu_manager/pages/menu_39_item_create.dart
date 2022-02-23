@@ -18,6 +18,7 @@ import 'package:foodwifi_trial/menu_manager/logic/thumbnail_image/thumbnail_imag
 import 'package:foodwifi_trial/menu_manager/widget_view/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:foodwifi_trial/router/app_router.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -26,6 +27,8 @@ class Menu39Page extends StatefulWidget {
 
   @override
   _Menu39PageState createState() => _Menu39PageState();
+
+  //showImageDialogCraousel();
 }
 
 class _Menu39PageState extends State<Menu39Page> {
@@ -38,6 +41,9 @@ class _Menu39PageState extends State<Menu39Page> {
   //String dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
   @override
   void initState() {
     super.initState();
@@ -70,6 +76,12 @@ class _Menu39PageState extends State<Menu39Page> {
     // final thumbImageFromCubit = context.watch<Menu39ImagesCubit>();
     // final thumbImageFromState = thumbImageFromCubit.state;
     // final thumbnailFinal = thumbImageFromState.thumbImageC;
+
+    //////////////////////////////////////////////
+
+    ///////////////////////////////////////////
+    ///
+    List<File>? imgViewList = [];
 
     var longitude = MediaQuery.of(context).size.height;
     var latitude = MediaQuery.of(context).size.width;
@@ -519,20 +531,6 @@ class _Menu39PageState extends State<Menu39Page> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                  // child: BlocListener<SliderImageCubit, SliderImageState>(
-                  //   listener: (context, state) {
-                  //     // TODO: implement listener
-                  //     if (state.imageSelectionStatus ==
-                  //         ImageSelectionStatus.fail) {
-                  //       Scaffold.of(context).showSnackBar(
-                  //         const SnackBar(
-                  //           content: Text(
-                  //               'Failed to select right number of slider images!*'),
-                  //           duration: Duration(seconds: 3),
-                  //         ),
-                  //       );
-                  //     }
-                  //   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -608,9 +606,31 @@ class _Menu39PageState extends State<Menu39Page> {
                   height: 16,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     //BlocProvider.of<SliderImageCubit>(context)
                     //   .multiImagePicker();
+
+                    List<XFile>? _images = await ImagePicker().pickMultiImage();
+                    print('-----------------');
+
+                    if (_images!.length < 4) {
+                      print("Select 4 images!");
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'You didn\'t select four images! Select upto 4 images.')));
+                    } else {
+                      BlocProvider.of<SliderImage1Cubit>(context)
+                          .addImageFromMultiImagePicker(_images[0]);
+
+                      BlocProvider.of<SliderImage2Cubit>(context)
+                          .addImageFromMultiImagePicker(_images[1]);
+
+                      BlocProvider.of<SliderImage3Cubit>(context)
+                          .addImageFromMultiImagePicker(_images[2]);
+
+                      BlocProvider.of<SliderImage4Cubit>(context)
+                          .addImageFromMultiImagePicker(_images[3]);
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -718,95 +738,72 @@ showDottedBoxContainer() {
   );
 }
 
-showImageDialogCarousel(context) {
-  List<File>? imgViewList = [];
-  print('====ImageDialogCarousel triggered====');
-  return showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: Material(
-            type: MaterialType.transparency,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.6,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colorss.bgColor,
-              ),
-              child: MultiBlocListener(
-                listeners: [
-                  BlocListener<SliderImage1Cubit, SliderImage1State>(
-                    listener: (context, state) {
-                      imgViewList.add(state.slider_image1!);
-                      print('========sliderImage1==========');
-                      print(imgViewList);
-                    },
-                  ),
-                  BlocListener<SliderImage2Cubit, SliderImage2State>(
-                    listener: (context, state) {
-                      imgViewList.add(state.slider_image2!);
-                    },
-                  ),
-                  BlocListener<SliderImage3Cubit, SliderImage3State>(
-                    listener: (context, state) {
-                      imgViewList.add(state.slider_image3!);
-                    },
-                  ),
-                  BlocListener<SliderImage4Cubit, SliderImage4State>(
-                    listener: (context, state) {
-                      imgViewList.add(state.slider_image4!);
-                    },
-                  ),
-                ],
-                child: CarouselSlider.builder(
-                    itemCount: imgViewList.length,
-                    //itemCount: imgViewList.length,
-                    itemBuilder: (context, index, realIndex) {
-                      final sliderImage = imgViewList[index];
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 10,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                              width: double.infinity,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.file(
-                                  // File(state.multipleImages![widget.sliderIndex].path),
-                                  //sliderImage,
-                                  File(sliderImage.path),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Text(
-                                  'Slider Image ' + (index + 1).toString())),
-                        ],
-                      );
-                    },
-                    options: CarouselOptions(
-                      viewportFraction: 0.8,
-                      height: 350,
-                      //aspectRatio: 16 / 9,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      enableInfiniteScroll: false,
-                      // initialPage: startImage,
-                    )),
-              ),
-            ),
-          ),
-        );
-      });
-}
+// showImageDialogCarousel(context) {
+  
+
+//   print('====ImageDialogCarousel triggered====');
+//   return showDialog(
+//       context: context,
+//       builder: (context) {
+//         return Center(
+//           child: Material(
+//             type: MaterialType.transparency,
+//             child: Container(
+//               padding: const EdgeInsets.all(16),
+//               width: MediaQuery.of(context).size.width * 0.8,
+//               height: MediaQuery.of(context).size.height * 0.6,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(8),
+//                 color: Colorss.bgColor,
+//               ),
+             
+//                 child: CarouselSlider.builder(
+//                     itemCount: imgViewList.length,
+//                     //itemCount: imgViewList.length,
+//                     itemBuilder: (context, index, realIndex) {
+//                       final sliderImage = imgViewList[index];
+//                       return Column(
+//                         mainAxisSize: MainAxisSize.min,
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Expanded(
+//                             flex: 10,
+//                             child: Container(
+//                               margin: const EdgeInsets.symmetric(horizontal: 8),
+//                               width: double.infinity,
+//                               child: ClipRRect(
+//                                 borderRadius: BorderRadius.circular(8),
+//                                 child: Image.file(
+//                                   // File(state.multipleImages![widget.sliderIndex].path),
+//                                   //sliderImage,
+//                                   File(sliderImage.path),
+//                                   fit: BoxFit.cover,
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                           const SizedBox(
+//                             height: 24,
+//                           ),
+//                           Expanded(
+//                               flex: 1,
+//                               child: Text(
+//                                   'Slider Image ' + (index + 1).toString())),
+//                         ],
+//                       );
+//                     },
+//                     options: CarouselOptions(
+//                       viewportFraction: 0.8,
+//                       height: 350,
+//                       //aspectRatio: 16 / 9,
+//                       enlargeCenterPage: true,
+//                       enlargeStrategy: CenterPageEnlargeStrategy.height,
+//                       enableInfiniteScroll: false,
+//                       // initialPage: startImage,
+//                     )),
+              
+//             ),
+//           ),
+//         );
+//       });
+// }

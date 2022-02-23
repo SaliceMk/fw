@@ -22,12 +22,14 @@ class SliderImagesCarousel extends StatelessWidget {
         context.watch<SliderImage3Cubit>().state.slider_image3;
     final cubitSliderImage4 =
         context.watch<SliderImage4Cubit>().state.slider_image4;
-    List<File>? imgViewList = [
-      cubitSliderImage1!,
-      cubitSliderImage2!,
-      cubitSliderImage3!,
-      cubitSliderImage4!
+    List<File?>? imgViewList = [
+      cubitSliderImage1,
+      cubitSliderImage2,
+      cubitSliderImage3,
+      cubitSliderImage4,
     ];
+
+    imgViewList.removeWhere((element) => element == null);
     return Center(
       child: Material(
         type: MaterialType.transparency,
@@ -58,7 +60,7 @@ class SliderImagesCarousel extends StatelessWidget {
                           child: Image.file(
                             // File(state.multipleImages![widget.sliderIndex].path),
                             //sliderImage,
-                            File(sliderImage.path),
+                            File(sliderImage!.path),
                             fit: BoxFit.cover,
                           ),
                         ),

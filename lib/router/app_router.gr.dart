@@ -75,9 +75,9 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SelectSuggestedItemsPage());
     },
-    Om54Route.name: (routeData) {
+    OrderFrontRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const Om54Page());
+          routeData: routeData, child: const OrderFrontPage());
     },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -122,7 +122,7 @@ class _$AppRouter extends RootStackRouter {
               path: 'empty-router-page',
               parent: RootTabRoute.name,
               children: [
-                RouteConfig(Om54Route.name,
+                RouteConfig(OrderFrontRoute.name,
                     path: '', parent: OrderManagerTabRoute.name)
               ]),
           RouteConfig(HomeTabRoute.name,
@@ -303,11 +303,11 @@ class SelectSuggestedItemsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [Om54Page]
-class Om54Route extends PageRouteInfo<void> {
-  const Om54Route() : super(Om54Route.name, path: '');
+/// [OrderFrontPage]
+class OrderFrontRoute extends PageRouteInfo<void> {
+  const OrderFrontRoute() : super(OrderFrontRoute.name, path: '');
 
-  static const String name = 'Om54Route';
+  static const String name = 'OrderFrontRoute';
 }
 
 /// generated route for
