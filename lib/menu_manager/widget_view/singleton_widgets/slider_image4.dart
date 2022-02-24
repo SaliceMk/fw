@@ -54,7 +54,9 @@ class _SliderImage4WidgetState extends State<SliderImage4Widget> {
                           showDialog(
                               context: context,
                               builder: (context) {
-                                return SliderImagesCarousel();
+                                return const SliderImagesCarousel(
+                                  carouselStartIndex: 3,
+                                );
                               });
                         },
                         // onTap: () => showImageDialogCarousel(

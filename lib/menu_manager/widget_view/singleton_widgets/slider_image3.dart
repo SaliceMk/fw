@@ -54,7 +54,9 @@ class _SliderImage3WidgetState extends State<SliderImage3Widget> {
                           showDialog(
                               context: context,
                               builder: (context) {
-                                return SliderImagesCarousel();
+                                return const SliderImagesCarousel(
+                                  carouselStartIndex: 2,
+                                );
                               });
                         },
                         child: Image.file(

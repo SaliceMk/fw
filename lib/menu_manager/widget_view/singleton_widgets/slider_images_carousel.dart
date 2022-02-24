@@ -10,7 +10,10 @@ import 'package:foodwifi_trial/menu_manager/logic/slider_image4/slider_image4_cu
 import 'package:provider/src/provider.dart';
 
 class SliderImagesCarousel extends StatelessWidget {
-  const SliderImagesCarousel({Key? key}) : super(key: key);
+  const SliderImagesCarousel({Key? key, required this.carouselStartIndex})
+      : super(key: key);
+
+  final int carouselStartIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +37,9 @@ class SliderImagesCarousel extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: Container(
-          padding: const EdgeInsets.all(16),
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.6,
+          padding: const EdgeInsets.only(bottom: 12, top: 12),
+          width: MediaQuery.of(context).size.width * 0.7,
+          height: MediaQuery.of(context).size.height * 0.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: Colorss.bgColor,
@@ -55,14 +58,11 @@ class SliderImagesCarousel extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 8),
                         width: double.infinity,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.file(
-                            // File(state.multipleImages![widget.sliderIndex].path),
-                            //sliderImage,
-                            File(sliderImage!.path),
-                            fit: BoxFit.cover,
-                          ),
+                        child: Image.file(
+                          // File(state.multipleImages![widget.sliderIndex].path),
+                          //sliderImage,
+                          File(sliderImage!.path),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -76,13 +76,13 @@ class SliderImagesCarousel extends StatelessWidget {
                 );
               },
               options: CarouselOptions(
-                viewportFraction: 0.8,
+                viewportFraction: 0.9,
                 height: 350,
                 //aspectRatio: 16 / 9,
                 enlargeCenterPage: true,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
                 enableInfiniteScroll: false,
-                // initialPage: startImage,
+                initialPage: carouselStartIndex,
               )),
         ),
       ),

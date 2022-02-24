@@ -141,19 +141,6 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage>
                     textField2: 'Description',
                     buttonLabel: 'CREATE'));
               },
-              // onPressed: () async {
-              //   await Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => Menu35Page(
-              //         appBarTitle: 'Create Category',
-              //         textField1: 'Category Name',
-              //         textField2: 'Description',
-              //         buttonLabel: 'CREATE',
-              //       ),
-              //     ),
-              //   );
-              // },
               backgroundColor: Colorss.primaryRed,
               elevation: 8,
             )
@@ -164,14 +151,6 @@ class FfMenuEmptyPageState extends State<FfMenuEmptyPage>
                   onPressed: () {
                     context.router.push(const Menu39Route());
                   },
-                  // onPressed: () async {
-                  //   await Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Menu39Page(),
-                  //     ),
-                  //   );
-                  // },
                   backgroundColor: Colorss.primaryRed,
                 )
               : (indexTab == 3)

@@ -53,34 +53,12 @@ class _Menu39PageState extends State<Menu39Page> {
     textController4 = TextEditingController();
   }
 
-  //late List<Widget> ImageDialogs;
-
-//  // String thumbImage =
-//       'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80';
-//   String sliderImage1 =
-//       'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80';
-
-//   String sliderImage2 =
-//       'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60';
-//   String sliderImage3 =
-//       'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
-//   String sliderImage4 =
-//       'https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80';
-
-  // List<String> thumbImageList = [
-  //   'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'
-  // ];
-
   @override
   Widget build(BuildContext context) {
     // final thumbImageFromCubit = context.watch<Menu39ImagesCubit>();
     // final thumbImageFromState = thumbImageFromCubit.state;
     // final thumbnailFinal = thumbImageFromState.thumbImageC;
 
-    //////////////////////////////////////////////
-
-    ///////////////////////////////////////////
-    ///
     List<File>? imgViewList = [];
 
     var longitude = MediaQuery.of(context).size.height;
@@ -691,11 +669,11 @@ showImageDialogThumb(context, imgView) {
           child: Material(
             type: MaterialType.transparency,
             child: Container(
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.6,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+              padding: const EdgeInsets.only(bottom: 12),
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.5,
+              decoration: const BoxDecoration(
+                //borderRadius: BorderRadius.circular(8),
                 color: Colorss.bgColor,
               ),
               child: Column(
@@ -703,13 +681,11 @@ showImageDialogThumb(context, imgView) {
                 children: [
                   Expanded(
                       flex: 8,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.file(
-                            imgView,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ))),
+                      child: Image.file(
+                        imgView,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      )),
                   const SizedBox(
                     height: 24,
                   ),

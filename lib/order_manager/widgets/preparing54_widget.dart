@@ -47,6 +47,7 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                         children: const [
                           Text(
                             'Order by Babumohon Laishram',
+                            style: TextStyle(color: Colorss.greyText),
                           ),
                         ],
                       ),
@@ -77,8 +78,8 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                                 .fromSTEB(0, 0, 8, 0),
                                             child: Image.asset(
                                               'assets/images/vegeterian.png',
-                                              width: 20,
-                                              height: 20,
+                                              width: 16,
+                                              height: 16,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -87,16 +88,10 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                           ),
                                         ],
                                       ),
-                                      collapsed: const Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            32, 0, 0, 0),
-                                        child: Text(
-                                          'Full 99 X Mc Spices',
-                                        ),
-                                      ),
+                                      collapsed: const SizedBox(),
                                       expanded: Padding(
                                         padding: const EdgeInsetsDirectional
-                                            .fromSTEB(32, 0, 0, 0),
+                                            .fromSTEB(24, 0, 0, 0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -107,6 +102,8 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                                   .fromSTEB(0, 0, 0, 4),
                                               child: Text(
                                                 'Variant : Full',
+                                                style: TextStyle(
+                                                    color: Colorss.greyText),
                                               ),
                                             ),
                                             Padding(
@@ -114,6 +111,9 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                                   .fromSTEB(0, 0, 0, 4),
                                               child: Text(
                                                 'Extra Cheese, Grilled Mushrooms',
+                                                style: TextStyle(
+                                                    color:
+                                                        Colorss.amberBtnBorder),
                                               ),
                                             ),
                                             Text(
@@ -139,11 +139,33 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                   ),
                                 ),
                               ),
-                              const Padding(
+                              Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                                child: Text(
-                                  'Rs. 359',
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'X  ',
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colorss.greyText),
+                                        ),
+                                        Text(
+                                          '9',
+                                          style: TextStyle(
+                                              color: Colorss.greyText),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text('Rs. 450'),
+                                  ],
                                 ),
                               ),
                             ],
@@ -170,8 +192,8 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                                                     0, 0, 8, 0),
                                             child: Image.asset(
                                               'assets/images/vegeterian.png',
-                                              width: 20,
-                                              height: 20,
+                                              width: 16,
+                                              height: 16,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -427,7 +449,7 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                               shape: BoxShape.circle,
                             ),
                             child: Image.asset(
-                              'assets/images/gps.png',
+                              'assets/images/myLocation.png',
                             ),
                           ),
                           const Padding(
@@ -456,27 +478,6 @@ class _Preparing54WidgetState extends State<Preparing54Widget> {
                           ),
                         ),
                       ),
-                      // child: FFButtonWidget(
-                      //   onPressed: () {
-                      //     print('Button pressed ...');
-                      //   },
-                      //   text: 'ORDER READY (15:31)',
-                      //   options: FFButtonOptions(
-                      //     width: double.infinity,
-                      //     height: 40,
-                      //     color: FlutterFlowTheme.of(context).primaryColor,
-                      //     textStyle:
-                      //         FlutterFlowTheme.of(context).subtitle2.override(
-                      //               fontFamily: 'Roboto',
-                      //               color: Colors.white,
-                      //             ),
-                      //     borderSide: BorderSide(
-                      //       color: Colors.transparent,
-                      //       width: 1,
-                      //     ),
-                      //     borderRadius: 4,
-                      //   ),
-                      // ),
                     ),
                   ],
                 ),
